@@ -1,0 +1,29 @@
+.breadcrumbs {
+  background: rgba($color: #dfdfdf, $alpha: 0.5);
+  padding: 13px 14px;
+  position: relative;
+  z-index: 2;
+
+  &__list {
+    display: flex;
+  }
+
+  &__item::after {
+    content: "/";
+    color: $default;
+    margin-right: 4px;
+  }
+
+  &__item:last-child::after {
+    display: none;
+  }
+
+  &__link {
+    font-size: 14px;
+    color: $default;
+  }
+}
+
+.background-none {
+  background: none;
+}

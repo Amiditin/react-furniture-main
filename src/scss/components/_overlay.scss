@@ -1,0 +1,87 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 5;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+.overlay-visible {
+  visibility: visible;
+  opacity: 1;
+
+  .rightside-menu {
+    transform: translateX(0);
+  }
+}
+
+.rightside-menu {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  max-width: 550px;
+  width: 100%;
+  background-color: white;
+  padding-top: 40px;
+  align-items: center;
+  display: flex;
+  overflow: auto;
+  transform: translateX(100%);
+  transition: transform 0.7s ease-out;
+
+  &__close {
+    position: absolute;
+    top: 0;
+    margin-top: 40px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    margin-left: 50px;
+    margin-bottom: 30px;
+  }
+
+  &__btn {
+    margin-bottom: 60px;
+  }
+
+  &__content {
+    text-align: center;
+    max-width: 385px;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    display: inline-block;
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    color: $title;
+    @extend %title-font;
+    font-size: 36px;
+    line-height: 51px;
+    padding-bottom: 17px;
+    margin-bottom: 20px;
+    position: relative;
+
+    &::after {
+      @extend %underline;
+      max-width: 232px;
+      margin: 0 auto;
+    }
+  }
+
+  &__text {
+    margin-bottom: 45px;
+  }
+
+  &__img {
+    max-width: 385px;
+  }
+}

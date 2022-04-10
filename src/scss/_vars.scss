@@ -1,0 +1,17 @@
+%title-font {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+%underline {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #6D7278;
+}
+
+$title: #363838;
+$default: #5A5A5A;

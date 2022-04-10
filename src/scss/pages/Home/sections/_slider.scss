@@ -1,0 +1,31 @@
+.top {
+  &__inner {
+    padding-bottom: 70px;
+  }
+
+  &__slider-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__slider-dot {
+    margin: 0 15px;
+  }
+
+  &__slider-btn {
+    background-color: $title;
+    bottom: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    font-size: 0;
+    cursor: pointer;
+  }
+
+  &__slider-active {
+    background-color: #FFEF35;
+  }
+}

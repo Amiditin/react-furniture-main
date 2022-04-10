@@ -1,0 +1,56 @@
+.slide {
+  position: relative;
+  opacity: 1;
+  transition: opacity 1.65s ease-in-out;
+
+  &__background {
+    position: absolute;
+    width: 100%;
+    height: 720px;
+    top: 0;
+    z-index: -1;
+  }
+  
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  &__img {
+    margin-left: -12%;
+    max-width: 700px;
+    height: 815px;
+    object-fit: cover;
+  }
+  
+  &__info {
+    max-width: 645px;
+    margin-left: 25px;
+  }
+  
+  &__title {
+    color: $title;
+    @extend %title-font;
+    font-size: 110px;
+    line-height: 135px;
+    padding-bottom: 26px;
+    margin-bottom: 26px;
+    position: relative;
+  
+    &::after {
+      @extend %underline;
+      width: 185px;
+    }
+  }
+  
+  &__text {
+    max-width: 585px;
+  }
+}
+
+.slide-invisible {
+  position: absolute;
+  transform: translateX(-100%);
+  opacity: 0;
+}
