@@ -6,37 +6,37 @@
     justify-content: space-between;
   }
 
-  &__category {
+  &__style {
     margin-bottom: 50px;
   }
 
-  &__category-title {
+  &__style-title {
     margin-bottom: 16px;
     color: $title;
     @extend %title-font;
     line-height: 23px;
   }
 
-  &__category-item {
+  &__style-item {
     margin-bottom: 12px;
   }
 
-  &__category-link {
+  &__style-link {
     color: inherit;
   }
 
-  &__tags {
+  &__decor {
     margin-bottom: 50px;
   }
 
-  &__tags-title {
+  &__decor-title {
     margin-bottom: 16px;
     color: $title;
     @extend %title-font;
     line-height: 23px;
   }
 
-  &__tags-item {
+  &__decor-item {
     color: #8f8d8d;
     font-weight: 600;
     font-size: 14px;
@@ -217,7 +217,7 @@
   }
 }
 
-.recent-posts {
+.coating {
   margin-bottom: 50px;
 
   &__title {
@@ -229,17 +229,6 @@
 
   &__item {
     margin-bottom: 11px;
-  }
-
-  &__item-title {
-    display: block;
-    color: inherit;
-  }
-
-  &__item-date,
-  &__item-author {
-    color: #a1a1a1;
-    font-size: 14px;
   }
 }
 

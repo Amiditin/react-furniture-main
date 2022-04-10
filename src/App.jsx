@@ -1,29 +1,35 @@
 import { Route, Routes } from 'react-router-dom';
-
-import React from 'react'
+import React from 'react';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
 
 import Home from './pages/Home';
-import About from './pages/About';import Gallery from './pages/Gallery';
+import About from './pages/About';
+import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import BlogPage from './pages/Blog/BlogPage';
 
+import { getDocs, collection } from 'firebase/firestore';
+import { database } from './firebase-config';
+
 function App() {
-
   const [blogItem, setBlogItem] = React.useState([]);
+  const blogCollectionsRef = collection(database, 'blog-posts');
 
-  // React.useEffect(() => {
-  //   const getBlogItems = async () => {
-  //     const data = await () => {
-  //
-  //     }
-  //   }
-  // }, []);
+  React.useEffect(() => {
+    const getBlogItems = async () => {
+      const data = await getDocs(blogCollectionsRef);
+      setBlogItem(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
 
+    getBlogItems();
+  }, []);
 
+  // if (blogItem !== []) {
+  //   console.log(blogItem)
+  // }
 
   return (
     <div className="wrapper">
