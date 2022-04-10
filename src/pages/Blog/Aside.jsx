@@ -48,7 +48,7 @@ function Aside() {
               href={network.linkUrl}
               target="_blank"
               rel="noreferrer">
-              <img className="blog__social-icon" src={network.iconUrl} alt="icon" />
+              <img className="blog__social-icon" src={network.iconUrl} alt={network.name} />
             </a>
           </li>
         ))}

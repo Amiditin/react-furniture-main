@@ -3,15 +3,9 @@ import { Link } from 'react-router-dom';
 import Button from './Button';
 import Input from './Input';
 
-function Footer() {
-  const social = [
-    { id: 1, imgUrl: '/img/icons/facebook.svg', name: 'Facebook' },
-    { id: 2, imgUrl: '/img/icons/instagram.svg', name: 'Instagram' },
-    { id: 3, imgUrl: '/img/icons/pinterest.svg', name: 'Pinterest' },
-    { id: 4, imgUrl: '/img/icons/whatsapp.svg', name: 'WhatsApp' },
-    { id: 5, imgUrl: '/img/icons/youtube.svg', name: 'Youtube' },
-  ];
+import { social } from '../store/social';
 
+function Footer() {
   const menu = [
     { id: 1, name: 'Delivery' },
     { id: 2, name: 'FAQ' },
@@ -44,15 +38,18 @@ function Footer() {
               </form>
             </div>
             <ul className="footer__social">
-              {social &&
-                social.map((obj) => (
-                  <li className="footer__social-item" key={obj.id}>
-                    <Link to="/" className="footer__social-link">
-                      <img src={obj.imgUrl} alt={obj.name} />
-                      {obj.name}
-                    </Link>
-                  </li>
-                ))}
+              {social.map((network) => (
+                <li className="footer__social-item" key={network.id}>
+                  <a
+                    className="footer__social-link"
+                    href={network.linkUrl}
+                    target="_blank"
+                    rel="noreferrer">
+                    <img className="footer__social-img" src={network.iconUrl} alt={network.name} />
+                    {network.name}
+                  </a>
+                </li>
+              ))}
             </ul>
             <nav className="footer__menu">
               <ul className="footer__menu-list">

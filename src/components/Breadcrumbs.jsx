@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 
 function Breadcrumbs({ location }) {
   const getCurLocation = () => {
-    let path = location.pathname.slice(1).split('/');
-    path = path.map((item) => {
-      return item[0].toUpperCase() + item.slice(1)
-    });
+    const path = location.pathname
+      .slice(1)
+      .split('/')
+      .map((item) => {
+        return item[0].toUpperCase() + item.slice(1);
+      });
     return path;
   };
 

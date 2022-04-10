@@ -32,6 +32,10 @@
 
   &__list-item {
     padding: 20px 55px;
+
+    @extend %title-font;
+    color: rgba(54, 56, 56, 0.9);
+    line-height: 22px;
   }
 
   &__list-item:nth-child(2) {
@@ -42,13 +46,7 @@
     margin-left: 110px;
   }
 
-  &__list-link {
-    @extend %title-font;
-    color: rgba(54, 56, 56, 0.9);
-    line-height: 22px;
-  }
-
-  &__list-cur {
+  &__list-active > span {
     border-bottom: 2px solid #363838;
     padding-bottom: 5px;
   }

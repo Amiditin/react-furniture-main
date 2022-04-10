@@ -1,15 +1,20 @@
 import classNames from 'classnames';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, NavLink } from 'react-router-dom';
 
 import Overlay from './Overlay';
 import Breadcrumbs from './Breadcrumbs';
 
 function Header() {
-  const menu = ['About', 'Gallery', 'Home', 'Blog', 'Contact'];
+  const menu = [
+    { id: 1, name: 'About' },
+    { id: 2, name: 'Gallery' },
+    { id: 3, name: 'Home' },
+    { id: 4, name: 'Blog' },
+    { id: 5, name: 'Contact' },
+  ];
 
   const location = useLocation();
-  const path = location.pathname.split('/');
 
   const [overlayIsOpened, setOverlayIsOpened] = React.useState(false);
 
@@ -27,22 +32,20 @@ function Header() {
         <div className="header__inner">
           <nav className="menu">
             <ul className="menu__list">
-              {menu.map((item, index) => {
-                return item === 'Home' ? (
-                  <Link to="/" key={index}>
+              {menu.map((item) => {
+                return item.id === 3 ? (
+                  <NavLink to="/" key={item.id}>
                     <img className="header__logo" src="/img/logo.png" alt="logo" />
-                  </Link>
+                  </NavLink>
                 ) : (
-                  <li className="menu__list-item" key={index}>
-                    <Link to={`/${item}`.toLowerCase()}>
-                      <span
-                        className={classNames('menu__list-link', {
-                          'menu__list-cur': path[1] === item.toLowerCase(),
-                        })}>
-                        {item}
-                      </span>
-                    </Link>
-                  </li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? 'menu__list-item menu__list-active' : 'menu__list-item'
+                    }
+                    key={item.id}
+                    to={`/${item.name}`.toLowerCase()}>
+                    <span>{item.name}</span>
+                  </NavLink>
                 );
               })}
               <img
