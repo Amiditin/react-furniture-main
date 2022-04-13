@@ -15,7 +15,21 @@ import { getDocs, collection } from 'firebase/firestore';
 import { database } from './firebase-config';
 
 function App() {
-  const [blogItem, setBlogItem] = React.useState([]);
+  const [blogItem, setBlogItem] = React.useState([
+    {
+      comments: [],
+      title: '',
+      style: '',
+      date: '',
+      img: [],
+      text: '',
+      coating: [],
+      author: '',
+      name: '',
+      id: '',
+      decor: [],
+    },
+  ]);
   const blogCollectionsRef = collection(database, 'blog-posts');
 
   React.useEffect(() => {
@@ -27,10 +41,6 @@ function App() {
     getBlogItems();
   }, []);
 
-  // if (blogItem !== []) {
-  //   console.log(blogItem)
-  // }
-
   return (
     <div className="wrapper">
       <Header />
@@ -39,8 +49,11 @@ function App() {
         <Route exact path="/about" element={<About />} />
         <Route exact path="/gallery" element={<Gallery />} />
         <Route exact path="/contact" element={<Contact />} />
-        <Route exact path="/blog" element={<Blog />} />
-        <Route exact path="/blogpage" element={<BlogPage />} />
+        <Route path="/blog" element={<Blog />} />
+        {blogItem &&
+          blogItem.map((item) => (
+            <Route key={item.id} path={`/blog/${item.name}`} element={<BlogPage blog={item} />} />
+          ))}
       </Routes>
       <Footer />
     </div>

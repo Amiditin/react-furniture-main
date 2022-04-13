@@ -25,9 +25,9 @@ export const listСategories = {
       {id: 3, name: 'Карнизы'},
       {id: 4, name: 'Колонны'},
       {id: 5, name: 'Открытые секции'},
-      {id: 6, name: 'Пилястры'},
+      {id: 6, name: 'Портал'},
       {id: 7, name: 'Подзоры'},
-      {id: 8, name: 'Портал'},
+      {id: 8, name: 'Пилястры'},
       {id: 9, name: 'Фрезеровки'},
     ]
   },
