@@ -65,6 +65,12 @@
     margin-bottom: 80px;
   }
 
+  &__item-img {
+    max-width: 730px;
+    min-width: 730px;
+    height: 415px;
+  }
+
   &__item-info {
     padding: 25px 0 10px;
     font-weight: 600;
@@ -77,11 +83,22 @@
     @extend %title-font;
     font-size: 24px;
     line-height: 38px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: justify;
+    word-spacing: 4px;
   }
 
   &__item-text {
     margin-bottom: 20px;
+    color: #5A5A5A;
+    text-align: justify;
+
+    &-cut {
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      display: -webkit-box; 
+      overflow: hidden;
+    }
   }
 
   &__item-coating {

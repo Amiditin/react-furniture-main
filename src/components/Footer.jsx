@@ -3,21 +3,28 @@ import { Link } from 'react-router-dom';
 import Button from './Button';
 import Input from './Input';
 
+import { menu } from '../store/menu';
 import { social } from '../store/social';
 
 function Footer() {
-  const menu = [
-    { id: 1, name: 'Delivery' },
-    { id: 2, name: 'FAQ' },
-    { id: 3, name: 'Help' },
-    { id: 4, name: 'More About Us' },
-  ];
-
   const textInfo = {
     title: 'Contact Us',
     text: 'Keffiyeh poutine etsy, paleo cray put a bird on it microdosing schlitz you probably occupy',
     email: 'ouremailaddress@email.com',
     copyright: '674 Gonzales Drive. Washington, PA 15301',
+  };
+
+  const handleOnCLickSend = () => {
+    console.log('Send');
+  };
+
+  const createNewMenu = () => {
+    let newMenu = [...menu];
+
+    [newMenu[0], newMenu[2]] = [newMenu[2], newMenu[0]];
+    [newMenu[1], newMenu[2]] = [newMenu[2], newMenu[1]];
+
+    return newMenu;
   };
 
   return (
@@ -32,10 +39,12 @@ function Footer() {
                 <img src="/img/icons/envelope.svg" alt="envelope" />
                 {textInfo.email}
               </a>
-              <form className="footer__form">
+              <div className="footer__form">
                 <Input placeholder="Subscribe by email" />
-                <Button ClassName="black">Send</Button>
-              </form>
+                <Button ClassName="black" onClick={handleOnCLickSend}>
+                  Send
+                </Button>
+              </div>
             </div>
             <ul className="footer__social">
               {social.map((network) => (
@@ -54,10 +63,10 @@ function Footer() {
             <nav className="footer__menu">
               <ul className="footer__menu-list">
                 {menu &&
-                  menu.map((obj) => (
-                    <li className="footer__menu-item" key={obj.id}>
-                      <Link className="footer__menu-link" to="/">
-                        {obj.name}
+                  createNewMenu().map((item) => (
+                    <li className="footer__menu-item" key={item.id}>
+                      <Link className="footer__menu-link" to={item.path}>
+                        {item.name}
                       </Link>
                     </li>
                   ))}

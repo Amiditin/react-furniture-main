@@ -47,7 +47,6 @@ function Carousel({ images }) {
     });
   };
 
-  console.log(images);
   return (
     <div className="carousel">
       {images.map((img, index) => (

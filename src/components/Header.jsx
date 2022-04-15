@@ -1,20 +1,16 @@
-import classNames from 'classnames';
 import React from 'react';
-import { Link, useLocation, NavLink } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
+import { menu } from '../store/menu';
 
 import Overlay from './Overlay';
 import Breadcrumbs from './Breadcrumbs';
 
 function Header() {
-  const menu = [
-    { id: 1, name: 'About' },
-    { id: 2, name: 'Gallery' },
-    { id: 3, name: 'Home' },
-    { id: 4, name: 'Blog' },
-    { id: 5, name: 'Contact' },
-  ];
+  const { pathname } = useLocation();
 
-  const location = useLocation();
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const [overlayIsOpened, setOverlayIsOpened] = React.useState(false);
 
@@ -34,7 +30,7 @@ function Header() {
             <ul className="menu__list">
               {menu.map((item) => {
                 return item.id === 3 ? (
-                  <NavLink to="/" key={item.id}>
+                  <NavLink to={item.path} key={item.id}>
                     <img className="header__logo" src="/img/logo.png" alt="logo" />
                   </NavLink>
                 ) : (
@@ -43,7 +39,7 @@ function Header() {
                       isActive ? 'menu__list-item menu__list-active' : 'menu__list-item'
                     }
                     key={item.id}
-                    to={`/${item.name}`.toLowerCase()}>
+                    to={item.path}>
                     <span>{item.name}</span>
                   </NavLink>
                 );
@@ -59,7 +55,7 @@ function Header() {
           <Overlay opened={overlayIsOpened} onClickClose={handleOnClickClose} />
         </div>
       </div>
-      {location.pathname === '/' ? false : <Breadcrumbs location={location} />}
+      {pathname === '/' ? false : <Breadcrumbs pathname={pathname} />}
     </header>
   );
 }

@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Breadcrumbs({ location }) {
+function Breadcrumbs({ pathname }) {
   const getCurLocation = () => {
-    const path = location.pathname
+    const path = pathname
       .slice(1)
       .split('/')
       .map((item) => {

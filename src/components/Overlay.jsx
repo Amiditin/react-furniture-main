@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import { auth, provider } from '../firebase-config';
@@ -50,25 +51,45 @@ function Overlay({ opened, onClickClose }) {
           alt="close"
           onClick={closeOverlay}
         />
-        <div className="rightside-menu__content">
-          <h4 className="rightside-menu__title">Furniture for life</h4>
-          <p className="rightside-menu__text">
-            Sustainable hot chicken skateboard, dreamcatcher meggings actually squid. Slow-carb
-            everyday carry +1 art party microdosing, put a bird on it brooklyn
-          </p>
-          <div className="rightside-menu__btn">
-            {isAuth === true ? (
+        {isAuth && auth.currentUser ? (
+          <div className="rightside-menu__content">
+            <h4 className="rightside-menu__title">Добро пожаловать</h4>
+            <div className="rightside-menu__user">
+              <img
+                className="rightside-menu__avatar"
+                src={auth.currentUser.photoURL}
+                alt="avatar"
+              />
+              <div className="rightside-menu__info">
+                <p className="rightside-menu__info-name">{auth.currentUser.displayName}</p>
+                <p className="rightside-menu__info-email">{auth.currentUser.email}</p>
+              </div>
+            </div>
+            <div className="rightside-menu__btn">
+              <Link to="blog/create" className="rightside-menu__btn-link">
+                <Button ClassName="tab" onClick={closeOverlay}>
+                  Создать пост
+                </Button>
+              </Link>
               <Button ClassName="black" onClick={singUserOut}>
                 Выйти
               </Button>
-            ) : (
+            </div>
+          </div>
+        ) : (
+          <div className="rightside-menu__content">
+            <h4 className="rightside-menu__title">Furniture for life</h4>
+            <p className="rightside-menu__text">
+              Sustainable hot chicken skateboard, dreamcatcher meggings actually squid. Slow-carb
+              everyday carry +1 art party microdosing, put a bird on it brooklyn
+            </p>
+            <div className="rightside-menu__btn">
               <Button ClassName="black" onClick={signInWithGoogle}>
                 Войти
               </Button>
-            )}
+            </div>
           </div>
-          <img className="rightside-menu__img" src="/img/furtniture/1.jpg" alt="img" />
-        </div>
+        )}
       </div>
     </div>
   );

@@ -4,9 +4,13 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import TextArea from '../../components/TextArea';
 import Collection from '../../components/Collection';
-import { Link } from 'react-router-dom';
+import { social } from '../../store/social';
 
 function Contact() {
+  const handleOnClickSend = () => {
+    console.log('Send');
+  };
+
   return (
     <main className="main">
       <div className="map">
@@ -23,31 +27,19 @@ function Contact() {
           <h3 className="contact__title">Contact Us</h3>
           <div className="contact__content">
             <ul className="contact__social">
-              <li className="contact__social-item">
-                <Link className="contact__social-link" to="/">
-                  <img className="contact__social-icon" src="img/icons/facebook.svg" alt="icon" />
-                </Link>
-              </li>
-              <li className="contact__social-item">
-                <Link className="contact__social-link" to="/">
-                  <img className="contact__social-icon" src="img/icons/instagram.svg" alt="icon" />
-                </Link>
-              </li>
-              <li className="contact__social-item">
-                <Link className="contact__social-link" to="/">
-                  <img className="contact__social-icon" src="img/icons/pinterest.svg" alt="icon" />
-                </Link>
-              </li>
-              <li className="contact__social-item">
-                <Link className="contact__social-link" to="/">
-                  <img className="contact__social-icon" src="img/icons/whatsapp.svg" alt="icon" />
-                </Link>
-              </li>
-              <li className="contact__social-item">
-                <Link className="contact__social-link" to="/">
-                  <img className="contact__social-icon" src="img/icons/youtube.svg" alt="icon" />
-                </Link>
-              </li>
+              {social.map((network) => (
+                <li className="contact__social-item" key={network.id}>
+                  <a className="contact__social-link" href={network.linkUrl}>
+                    <img
+                      className="contact__social-icon"
+                      src={network.iconUrl}
+                      alt={network.name}
+                      target="_blank"
+                      rel="noreferrer"
+                    />
+                  </a>
+                </li>
+              ))}
             </ul>
             <p className="contact__text">
               Vexillologist vape microdosing freegan pork belly deep v direct trade cray
@@ -70,7 +62,9 @@ function Contact() {
                 <Input placeholder="Your e-mail" type="email" />
               </div>
               <TextArea placeholder="Your message" />
-              <Button ClassName="black">Send</Button>
+              <Button ClassName="black" onClick={handleOnClickSend}>
+                Send
+              </Button>
             </div>
           </div>
         </div>

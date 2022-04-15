@@ -1,21 +1,22 @@
 import { Route, Routes } from 'react-router-dom';
 import React from 'react';
 
-import Footer from './components/Footer';
-import Header from './components/Header';
+import Layout from './components/Layout';
 
 import Home from './pages/Home';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
-import Blog from './pages/Blog';
+import Blog from './pages/Blog/Blog';
 import BlogPage from './pages/Blog/BlogPage';
+import CreatePost from './pages/Blog/CreatePost';
+import NotFound from './pages/NotFound';
 
 import { getDocs, collection } from 'firebase/firestore';
 import { database } from './firebase-config';
 
 function App() {
-  const [blogItem, setBlogItem] = React.useState([
+  const [blogPosts, setBlogPosts] = React.useState([
     {
       comments: [],
       title: '',
@@ -30,33 +31,29 @@ function App() {
       decor: [],
     },
   ]);
-  const blogCollectionsRef = collection(database, 'blog-posts');
 
   React.useEffect(() => {
-    const getBlogItems = async () => {
-      const data = await getDocs(blogCollectionsRef);
-      setBlogItem(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const getBlogPostss = async () => {
+      const data = await getDocs(collection(database, 'blog-posts'));
+      setBlogPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
-    getBlogItems();
+    getBlogPostss();
   }, []);
 
   return (
-    <div className="wrapper">
-      <Header />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/about" element={<About />} />
-        <Route exact path="/gallery" element={<Gallery />} />
-        <Route exact path="/contact" element={<Contact />} />
-        <Route path="/blog" element={<Blog />} />
-        {blogItem &&
-          blogItem.map((item) => (
-            <Route key={item.id} path={`/blog/${item.name}`} element={<BlogPage blog={item} />} />
-          ))}
-      </Routes>
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="about" element={<About />} />
+        <Route path="gallery" element={<Gallery />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="blog" element={<Blog posts={blogPosts} />} />
+        <Route path="blog/:name" element={<BlogPage posts={blogPosts} />} />
+        <Route path="blog/create" element={<CreatePost />} />
+      </Route>
+    </Routes>
   );
 }
 

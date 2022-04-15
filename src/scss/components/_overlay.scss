@@ -56,11 +56,6 @@
     margin: 0 auto;
   }
 
-  &__logo {
-    display: inline-block;
-    margin-bottom: 30px;
-  }
-
   &__title {
     color: $title;
     @extend %title-font;
@@ -82,6 +77,38 @@
   }
 
   &__img {
-    max-width: 385px;
+    display: inline-block;
+  }
+
+  &__user {
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    margin-bottom: 50px;
+  }
+
+  &__avatar {
+    width: 74px;
+    height: 74px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 13px;
+  }
+
+  &__info {
+    text-align: start;
+    margin-left: 10px;
+  }
+
+  &__info-name {
+    color: $title;
+    @extend %title-font;
+    line-height: 36px;
+    font-size: 24px;
+    margin-top: 7px;
+  }
+
+  &__info-email {
+    font-size: 18px;
   }
 }
