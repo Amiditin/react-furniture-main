@@ -1,0 +1,37 @@
+.aside {
+  width: 350px;
+  margin-left: 50px;
+
+  &__search {
+    margin-bottom: 40px;
+    position: relative;
+
+    input {
+      padding-right: 40px !important;
+    }
+  }
+
+  &__search-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 15px;
+    margin-top: 12px;
+    cursor: pointer;
+  }
+
+  &__coating {
+    margin-bottom: 50px;
+  }
+  
+  &__coating-title {
+    margin-bottom: 24px;
+    color: $title;
+    @extend %title-font;
+    line-height: 23px;
+  }
+
+  &__coating-item {
+    margin-bottom: 11px;
+  }
+}

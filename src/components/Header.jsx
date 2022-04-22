@@ -29,7 +29,7 @@ function Header() {
           <nav className="menu">
             <ul className="menu__list">
               {menu.map((item) => {
-                return item.id === 3 ? (
+                return item.id === 68914271 ? (
                   <NavLink to={item.path} key={item.id}>
                     <img className="header__logo" src="/img/logo.png" alt="logo" />
                   </NavLink>

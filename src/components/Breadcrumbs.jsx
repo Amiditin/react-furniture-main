@@ -29,17 +29,11 @@ function Breadcrumbs({ pathname }) {
             </Link>
           </li>
           <li className="breadcrumbs__item">
-            {curLocation &&
-              curLocation.map((item, index) => {
-                return (
-                  <Link
-                    className="breadcrumbs__link"
-                    to={`/${curLocation[0].toLowerCase()}`}
-                    key={index}>
-                    {index > 0 ? `/ ${item}` : item}
-                  </Link>
-                );
-              })}
+          <Link
+            className="breadcrumbs__link"
+            to={`/${curLocation[0].toLowerCase()}`}>
+            {curLocation[0]}
+          </Link>
           </li>
         </ul>
       </div>

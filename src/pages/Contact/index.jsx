@@ -2,7 +2,6 @@ import React from 'react';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import TextArea from '../../components/TextArea';
 import Collection from '../../components/Collection';
 import { social } from '../../store/social';
 
@@ -61,7 +60,7 @@ function Contact() {
                 <Input placeholder="Your name" type="text" />
                 <Input placeholder="Your e-mail" type="email" />
               </div>
-              <TextArea placeholder="Your message" />
+              <textarea className="textarea" placeholder="Your message" />
               <Button ClassName="black" onClick={handleOnClickSend}>
                 Send
               </Button>

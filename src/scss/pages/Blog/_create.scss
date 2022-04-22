@@ -1,0 +1,229 @@
+.create-post {
+  margin: 40px 0 120px;
+
+  &__main-title {
+    color: $title;
+    @extend %title-font;
+    font-size: 36px;
+    line-height: 51px;
+    padding-bottom: 15px;
+    margin-bottom: 45px;
+    position: relative;
+    text-align: center;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 200px;
+      height: 1px;
+      margin: 0 auto;
+      background: #6d7278;
+    }
+  }
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__content {
+    width: 730px;
+  }
+
+  &__author,
+  &__input,
+  &__textarea {
+    margin-bottom: 25px;
+  }
+
+  &__author-items {
+    display: flex;
+  }
+
+  &__author-span {
+    color: $title;
+    @extend %title-font;
+    margin-left: 7px;
+  }
+
+  &__author-edit,
+  &__author-check {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__author-input {
+    padding: 0 10px;
+    margin-left: 7px;
+
+    &:disabled {
+      border: none;
+    }
+  }
+
+  &__images {
+    margin-bottom: 40px;
+
+    input {
+      opacity: 0;
+      position: absolute;
+      z-index: -1;
+      overflow: hidden;
+      width: 0.4px;
+      height: 0.4px;
+    }
+  }
+
+  &__images-title {
+    color: $title;
+    @extend %title-font;
+    margin-bottom: 15px;
+  }
+
+  &__images-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    border: 2px dashed $title;
+    opacity: 0.7;
+    padding: 15px 10px;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__images-upload {
+    opacity: 1 !important;
+    border: 1px solid $title;
+  }
+
+  &__images-icon {
+    width: 30px;
+    height: auto;
+    margin-right: 11px;
+  }
+
+  &__images-text {
+    margin-left: 5px;
+  }
+
+  &__error {
+    display: flex;
+    color: #ff4136;
+
+    img {
+      padding-right: 3px;
+    }
+  }
+
+  &__style,
+  &__coating,
+  &__decor {
+    margin-bottom: 20px;
+  }
+
+  &__style-title,
+  &__coating-title,
+  &__decor-title {
+    margin-bottom: 16px;
+    color: $title;
+    @extend %title-font;
+    line-height: 23px;
+  }
+
+  &__style-items,
+  &__coating-items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__decor-items {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__decor-item-lable {
+    color: #8f8d8d;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0 16px;
+    margin-top: 14px;
+    margin-right: 16px;
+    display: inline-block;
+    border: 1px solid rgba($color: #455657, $alpha: 0.5);
+    border-radius: 14px;
+    cursor: pointer;
+
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+  &__decor-item-input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+
+    &:checked + label {
+      background-color: #f8f095;
+      border: 1px solid rgba($color: #f8f095, $alpha: 1);
+      color: $title;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+  }
+
+  &__style-item,
+  &__coating-item {
+    margin-bottom: 12px;
+
+    label {
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    input {
+      &:checked + label {
+        color: $title;
+        @extend %title-font;
+      }
+    }
+
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  .textarea {
+    min-height: 550px;
+    margin: 0;
+  }
+
+  &__buttons {
+    width: 100%;
+    position: relative;
+  }
+
+  &__buttons-items {
+    position: absolute;
+    right: 0;
+  }
+}

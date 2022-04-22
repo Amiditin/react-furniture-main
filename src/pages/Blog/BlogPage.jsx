@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import TextArea from '../../components/TextArea';
-import Button from '../../components/Button';
 import Carousel from '../../components/Carousel';
 
 import Aside from './Aside';
+import BlogPageComments from './BlogPageComments';
 
-function BlogItem({ posts }) {
+function BlogItem({ posts, dataParse, getCurrentDate }) {
   const { name } = useParams();
 
   const post = posts.find((post) => post.name === name);
@@ -21,14 +20,21 @@ function BlogItem({ posts }) {
               <>
                 <div className="blog__items">
                   <div className="blog__item">
-                    {post.img && <Carousel images={post.img} />}
+                    {post.images && <Carousel images={post.images} />}
                     <div className="blog__item-info">
-                      <span className="blog__item-date">{`${post.date} | `}</span>
+                      <span className="blog__item-date">{`${dataParse(post.date)} | `}</span>
                       <span className="blog__item-author">{`${post.author} | `}</span>
                       <span className="blog__item-style">{post.style}</span>
                     </div>
                     <h3 className="blog__item-title">{post.title}</h3>
-                    <p className="blog__item-text">{post.text}</p>
+                    <p className="blog__item-text">
+                      {post.text.split('\n').map((value, index) => (
+                        <span key={index}>
+                          {value}
+                          <br />
+                        </span>
+                      ))}
+                    </p>
                     <div className="blog__item-coating">
                       <h4 className="blog__item-title">Покрытие</h4>
                       {post.coating.map((item, index) => (
@@ -65,36 +71,12 @@ function BlogItem({ posts }) {
                         />
                       </Link>
                     </div>
-                    <div className="blog__item-comments">
-                      <h4 className="blog__item-comments-title">Комментарии:</h4>
-                      {post.comments ? (
-                        <div className="blog__item-comments-items">
-                          {post.comments.map((comment, index) => (
-                            <div className="blog__item-comments-item" key={index}>
-                              <img
-                                className="blog__item-comments-avatar"
-                                src={comment.avatar}
-                                alt="avatar"
-                              />
-                              <div className="blog__item-comments-info">
-                                <p className="blog__item-comments-name">{comment.name}</p>
-                                <p className="blog__item-comments-date">{comment.date}</p>
-                                <p className="blog__item-comments-text">{comment.text}</p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div class className="blog__item-nocomments">
-                          Здесь пока нет ни одного комментария, вы можете стать первым!
-                        </div>
-                      )}
-                    </div>
-                    <div className="blog__item-form">
-                      <h4 className="blog__item-form-title">Оставить комментрарий</h4>
-                      <TextArea placeholder="Ваш комментарий..." />
-                      <Button ClassName="black">Отправить</Button>
-                    </div>
+                    <BlogPageComments
+                      postComments={post.comments}
+                      dataParse={dataParse}
+                      getCurrentDate={getCurrentDate}
+                      id={post.id}
+                    />
                   </div>
                 </div>
                 <Aside />

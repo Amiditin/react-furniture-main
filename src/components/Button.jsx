@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 
-function Button({ children, ClassName, onClick = () => console.log('click btn'), active }) {
+function Button({ children, ClassName, Type = 'button', onClick = () => {}, active }) {
   return (
     <button
       className={classNames('button', {
@@ -9,6 +9,7 @@ function Button({ children, ClassName, onClick = () => console.log('click btn'),
         'button-tab': ClassName === 'tab',
         'button-active': active,
       })}
+      type={Type}
       onClick={() => onClick()}>
       {children}
     </button>

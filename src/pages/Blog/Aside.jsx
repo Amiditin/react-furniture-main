@@ -22,11 +22,11 @@ function Aside() {
           ))}
         </ul>
       </div>
-      <div className="coating">
-        <h5 className="coating__title">{coating.name}</h5>
-        <ul className="coating__list">
+      <div className="aside__coating">
+        <h5 className="aside__coating-title">{coating.name}</h5>
+        <ul className="aside__coating-list">
           {coating.list.map(({ name, id }) => (
-            <li className="coating__item" key={id}>
+            <li className="aside__coating-item" key={id}>
               {name}
             </li>
           ))}

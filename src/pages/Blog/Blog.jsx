@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Aside from './Aside';
 
-function Blog({ posts }) {
+function Blog({ posts, dataParse }) {
   return (
     <main className="main">
       <section className="blog">
@@ -13,11 +13,13 @@ function Blog({ posts }) {
               {posts &&
                 posts.map((post) => (
                   <div className="blog__item" key={post.id}>
-                    <Link to={`/blog/${post.name}`}>
-                      <img className="blog__item-img" src={post.img[0]} alt="img" />
-                    </Link>
+                    {post.images && (
+                      <Link to={`/blog/${post.name}`}>
+                        <img className="blog__item-img" src={post.images[0]} alt="img" />
+                      </Link>
+                    )}
                     <div className="blog__item-info">
-                      <span className="blog__item-date">{`${post.date} | `}</span>
+                      <span className="blog__item-date">{`${dataParse(post.date)} | `}</span>
                       <span className="blog__item-author">{`${post.author} | `}</span>
                       <span className="blog__item-category">{post.style}</span>
                     </div>

@@ -1,3 +1,6 @@
+@import "./aside";
+@import "./create";
+
 .blog {
   padding: 60px 0 100px;
 
@@ -90,14 +93,15 @@
 
   &__item-text {
     margin-bottom: 20px;
-    color: #5A5A5A;
+    color: #5a5a5a;
     text-align: justify;
 
     &-cut {
       -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
-      display: -webkit-box; 
+      display: -webkit-box;
       overflow: hidden;
+      text-align: justify;
     }
   }
 
@@ -193,7 +197,7 @@
 
   &__item-comments-item {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: start;
     margin-bottom: 50px;
   }
@@ -213,9 +217,16 @@
   }
 
   &__item-comments-date {
+    margin-top: -3px;
     margin-bottom: 10px;
     font-size: 14px;
     color: #a1a1a1;
+  }
+
+  &__item-form {
+    span {
+      margin-bottom: 15px;
+    }
   }
 
   &__item-form-title {
@@ -224,44 +235,6 @@
     color: $title;
     @extend %title-font;
     margin-bottom: 25px;
-  }
-}
-
-.aside {
-  width: 350px;
-  margin-left: 50px;
-
-  &__search {
-    margin-bottom: 40px;
-    position: relative;
-
-    input {
-      padding-right: 40px !important;
-    }
-  }
-
-  &__search-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 15px;
-    margin-top: 12px;
-    cursor: pointer;
-  }
-}
-
-.coating {
-  margin-bottom: 50px;
-
-  &__title {
-    margin-bottom: 24px;
-    color: $title;
-    @extend %title-font;
-    line-height: 23px;
-  }
-
-  &__item {
-    margin-bottom: 11px;
   }
 }
 

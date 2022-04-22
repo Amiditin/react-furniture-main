@@ -41,6 +41,36 @@ function App() {
     getBlogPostss();
   }, []);
 
+  const dataParse = (date) => {
+    const list = [
+      'Января',
+      'Февраля',
+      'Марта',
+      'Апреля',
+      'Мая',
+      'Июня',
+      'Июля',
+      'Августа',
+      'Сентября',
+      'Октября',
+      'Ноября',
+      'Декабря',
+    ];
+    let [year, month, day] = date.split('.');
+    month = list[Number(month) - 1];
+
+    return `${day} ${month} ${year}`;
+  };
+
+  const getCurrentDate = () => {
+    const newDate = new Date();
+    const day = newDate.getDate();
+    const month = newDate.getMonth() + 1;
+    const year = newDate.getFullYear();
+
+    return `${year}.${month}.${day}`;
+  };
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -49,9 +79,14 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="blog" element={<Blog posts={blogPosts} />} />
-        <Route path="blog/:name" element={<BlogPage posts={blogPosts} />} />
-        <Route path="blog/create" element={<CreatePost />} />
+        <Route path="blog" element={<Blog posts={blogPosts} dataParse={dataParse} />} />
+        <Route
+          path="blog/:name"
+          element={
+            <BlogPage posts={blogPosts} dataParse={dataParse} getCurrentDate={getCurrentDate} />
+          }
+        />
+        <Route path="blog/create" element={<CreatePost getCurrentDate={getCurrentDate} />} />
       </Route>
     </Routes>
   );
