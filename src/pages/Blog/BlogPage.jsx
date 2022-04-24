@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { dataParse, getCurrentDate } from '../../utils/scripts';
 
 import Carousel from '../../components/Carousel';
-
 import Aside from './Aside';
 import BlogPageComments from './BlogPageComments';
 
-function BlogItem({ posts, dataParse, getCurrentDate }) {
+function BlogItem() {
   const { name } = useParams();
+  const posts = useSelector((state) => state.posts.posts);
 
   const post = posts.find((post) => post.name === name);
 

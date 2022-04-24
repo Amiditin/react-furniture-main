@@ -3,7 +3,7 @@ import React from 'react';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Collection from '../../components/Collection';
-import { social } from '../../store/social';
+import { social } from '../../utils/constants';
 
 function Contact() {
   const handleOnClickSend = () => {

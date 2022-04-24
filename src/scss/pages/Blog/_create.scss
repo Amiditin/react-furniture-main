@@ -1,13 +1,14 @@
 .create-post {
-  margin: 40px 0 120px;
+  margin: 10% 0;
 
-  &__main-title {
+  &__main-title,
+  &__authorization-title {
     color: $title;
     @extend %title-font;
     font-size: 36px;
     line-height: 51px;
     padding-bottom: 15px;
-    margin-bottom: 45px;
+    margin-bottom: 55px;
     position: relative;
     text-align: center;
 
@@ -24,6 +25,27 @@
     }
   }
 
+  &__authorization {
+    button {
+      margin: 15px 0;
+    }
+  }
+
+  &__authorization-title {
+    text-align: start;
+    margin-bottom: 25px;
+
+    &::after {
+      width: 250px;
+      margin: 0;
+    }
+  }
+
+  &__authorization-text {
+    font-size: 20px;
+    line-height: 41px;
+  }
+
   &__form {
     display: flex;
     justify-content: space-between;
@@ -31,6 +53,7 @@
 
   &__content {
     width: 730px;
+    margin-bottom: 60px;
   }
 
   &__author,
@@ -140,7 +163,7 @@
   &__style-title,
   &__coating-title,
   &__decor-title {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     color: $title;
     @extend %title-font;
     line-height: 23px;
@@ -192,6 +215,12 @@
   &__style-item,
   &__coating-item {
     margin-bottom: 12px;
+    // font-family: "Montserrat", sans-serif;
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
 
     label {
       margin-left: 5px;
@@ -199,21 +228,17 @@
     }
 
     input {
+      transform: translateY(1px);
+
       &:checked + label {
         color: $title;
-        @extend %title-font;
+        font-weight: bold;
       }
-    }
-
-    transition: all 0.25s ease-in-out;
-
-    &:hover {
-      transform: translateY(-1px);
     }
   }
 
   .textarea {
-    min-height: 550px;
+    min-height: 565px;
     margin: 0;
   }
 

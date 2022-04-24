@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from './Button';
 import Input from './Input';
 
-import { menu } from '../store/menu';
-import { social } from '../store/social';
+import { menu, social } from '../utils/constants';
 
 function Footer() {
   const textInfo = {

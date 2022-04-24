@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { listСategories } from '../../store/listСategories';
-import { social } from '../../store/social';
+import { listСategories, social } from '../../utils/constants';
 
 function Aside() {
   const { style, coating, decor } = listСategories;

@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
+import { dataParse } from '../../utils/scripts';
 import Aside from './Aside';
 
-function Blog({ posts, dataParse }) {
+function Blog() {
+  const posts = useSelector((state) => state.posts.posts);
+
   return (
     <main className="main">
       <section className="blog">

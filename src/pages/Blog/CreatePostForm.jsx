@@ -1,8 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import { auth } from '../../firebase-config';
-import { listСategories } from '../../store/listСategories';
+import { auth } from '../../utils/firebase-config';
+import { listСategories } from '../../utils/constants/listСategories';
 
 import Button from '../../components/Button';
 import CreatePostError from './CreatePostError';

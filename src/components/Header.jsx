@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
-import { menu } from '../store/menu';
+import { menu } from '../utils/constants';
 
 import Overlay from './Overlay';
 import Breadcrumbs from './Breadcrumbs';
@@ -13,10 +13,6 @@ function Header() {
   }, [pathname]);
 
   const [overlayIsOpened, setOverlayIsOpened] = React.useState(false);
-
-  const handleOnClickMenu = () => {
-    setOverlayIsOpened(true);
-  };
 
   const handleOnClickClose = () => {
     setOverlayIsOpened(false);
@@ -48,7 +44,7 @@ function Header() {
                 className="header__iconmenu"
                 src="/img/icon-login.svg"
                 alt="icon menu"
-                onClick={handleOnClickMenu}
+                onClick={() => setOverlayIsOpened(true)}
               />
             </ul>
           </nav>

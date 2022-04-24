@@ -8,7 +8,7 @@
   z-index: 5;
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.4s ease-out;
+  transition: opacity 0.25s ease-out;
 }
 
 .overlay-visible {
@@ -33,7 +33,7 @@
   display: flex;
   overflow: auto;
   transform: translateX(100%);
-  transition: transform 0.7s ease-out;
+  transition: transform 0.25s ease-out;
 
   &__close {
     position: absolute;

@@ -1,14 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { addDoc, collection } from 'firebase/firestore';
-import { database, storage } from '../../firebase-config';
+import { database, storage, auth } from '../../utils/firebase-config';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getCurrentDate } from '../../utils/scripts';
 import CyrillicToTranslit from 'cyrillic-to-translit-js';
 
 import CreatePostForm from './CreatePostForm';
+import Button from '../../components/Button';
 
-function CreatePost({ getCurrentDate }) {
+function CreatePost() {
+  const [publishProcess, setPublishProcess] = React.useState(false);
+  const [publishProcessTitle, setPublishProcessTitle] = React.useState('Загружаем пост');
+  const [publishProcessText, setPublishProcessText] = React.useState(['Старт']);
   const cyrillicToTranslit = new CyrillicToTranslit();
-  const isAuth = localStorage.getItem('isAuth') === 'true';
 
   const uploadImages = async (images, name) => {
     const imgs = [];
@@ -30,11 +35,15 @@ function CreatePost({ getCurrentDate }) {
       comments: [],
       name: name,
       ...data,
-    }).then(console.log('Отправил на firestore'), data);
+    }).then(() => {
+      setPublishProcessTitle('Пост опубликован!');
+      console.log('Отправил на firestore');
+    });
   };
 
   const handleCreatePost = async (data) => {
     const name = cyrillicToTranslit.transform(data.title, '-').toLowerCase().replace('%', '');
+    setPublishProcess(true);
 
     await uploadImages(data.images, name).then((imgs) => {
       data.images = imgs;
@@ -45,14 +54,36 @@ function CreatePost({ getCurrentDate }) {
   return (
     <main className="main">
       <div className="container">
-        {isAuth ? (
-          <section className="create-post">
-            <h1 className="create-post__main-title">Создать пост</h1>
-            <CreatePostForm createPost={handleCreatePost} />
-          </section>
-        ) : (
-          <p className="d">Pls login</p>
-        )}
+        <section className="create-post">
+          {publishProcess ? (
+            <div className="create-post__publish-process">
+              <h1 className="create-post__main-title">{publishProcessTitle}</h1>
+              {publishProcessText.map((text, index) => (
+                <p className="create-post__publish-process-text" key={index}>
+                  {text}
+                </p>
+              ))}
+              {publishProcessTitle === 'Пост опубликован!' && (
+                <Link to="/blog">
+                  <Button ClassName="tab">Готово</Button>
+                </Link>
+              )}
+            </div>
+          ) : auth.currentUser ? (
+            <div className="create-post__main">
+              <h1 className="create-post__main-title">Создать пост</h1>
+              <CreatePostForm createPost={handleCreatePost} />
+            </div>
+          ) : (
+            <div className="create-post__authorization">
+              <h1 className="create-post__authorization-title">Ошибка авторизации</h1>
+              <p className="create-post__authorization-text">
+                Для создания постов необходимо авторизоваться!
+              </p>
+              <Button ClassName="tab">Авторизоваться</Button>
+            </div>
+          )}
+        </section>
       </div>
     </main>
   );

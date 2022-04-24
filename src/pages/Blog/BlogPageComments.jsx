@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { doc, setDoc } from 'firebase/firestore';
-import { database, auth } from '../../firebase-config';
-
+import { database, auth } from '../../utils/firebase-config';
 import { useForm } from 'react-hook-form';
 
 import Button from '../../components/Button';

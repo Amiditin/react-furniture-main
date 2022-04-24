@@ -1,29 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
-import { auth, provider } from '../firebase-config';
+import { auth, provider } from '../utils/firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
 
 import Button from './Button';
 
 function Overlay({ opened, onClickClose }) {
   const rightsideMenuRef = React.useRef();
-
-  const [isAuth, setIsAuth] = React.useState(localStorage.getItem('isAuth') === 'true');
+  const [isAuth, setIsAuth] = React.useState(auth.currentUser && true);
 
   const signInWithGoogle = () => {
-    signInWithPopup(auth, provider).then((result) => {
-      localStorage.setItem('isAuth', true);
-      setIsAuth(true);
-    });
+    signInWithPopup(auth, provider).then(() => setIsAuth(true));
   };
 
   const singUserOut = () => {
-    signOut(auth).then(() => {
-      localStorage.clear();
-      setIsAuth(false);
-    });
+    signOut(auth).then(() => setIsAuth(false));
   };
 
   const closeOverlay = () => {
@@ -51,7 +44,7 @@ function Overlay({ opened, onClickClose }) {
           alt="close"
           onClick={closeOverlay}
         />
-        {isAuth && auth.currentUser ? (
+        {isAuth || auth.currentUser ? (
           <div className="rightside-menu__content">
             <h4 className="rightside-menu__title">Добро пожаловать</h4>
             <div className="rightside-menu__user">
@@ -71,9 +64,11 @@ function Overlay({ opened, onClickClose }) {
                   Создать пост
                 </Button>
               </Link>
-              <Button ClassName="black" onClick={singUserOut}>
-                Выйти
-              </Button>
+              <Link to="/">
+                <Button ClassName="black" onClick={singUserOut}>
+                  Выйти
+                </Button>
+              </Link>
             </div>
           </div>
         ) : (
@@ -84,9 +79,11 @@ function Overlay({ opened, onClickClose }) {
               everyday carry +1 art party microdosing, put a bird on it brooklyn
             </p>
             <div className="rightside-menu__btn">
-              <Button ClassName="black" onClick={signInWithGoogle}>
-                Войти
-              </Button>
+              <Link to="/">
+                <Button ClassName="black" onClick={signInWithGoogle}>
+                  Войти
+                </Button>
+              </Link>
             </div>
           </div>
         )}
