@@ -181,13 +181,23 @@
   &__item-comments {
     margin-bottom: 40px;
   }
-
+  &__item-authorization {
+    button {
+      margin: 0;
+    }
+  }
   &__item-nocomments {
     color: #8f8d8d;
     margin-bottom: 30px;
   }
 
-  &__item-comments-title {
+  &__item-authorization-text {
+    color: #8f8d8d;
+    margin-bottom: 22px;
+  }
+
+  &__item-comments-title,
+  &__item-authorization-title {
     color: $title;
     @extend %title-font;
     line-height: 31px;

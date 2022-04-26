@@ -1,43 +1,35 @@
 import classNames from 'classnames';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-function Breadcrumbs({ pathname }) {
-  const getCurLocation = () => {
-    const path = pathname
-      .slice(1)
-      .split('/')
-      .map((item) => {
-        return item[0].toUpperCase() + item.slice(1);
-      });
-    return path;
-  };
-
-  const curLocation = getCurLocation();
-  const originalPath = curLocation.find((item) => item === 'About' || item === 'Contact');
+function Breadcrumbs() {
+  const { pathname } = useLocation();
+  const path = pathname.slice(1).split('/');
 
   return (
-    <div
-      className={classNames('breadcrumbs', {
-        'background-none': originalPath === 'About' || originalPath === 'Contact',
-      })}>
-      <div className="container">
-        <ul className="breadcrumbs__list">
-          <li className="breadcrumbs__item">
-            <Link to="/" className="breadcrumbs__link">
-              Home
-            </Link>
-          </li>
-          <li className="breadcrumbs__item">
-          <Link
-            className="breadcrumbs__link"
-            to={`/${curLocation[0].toLowerCase()}`}>
-            {curLocation[0]}
-          </Link>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <>
+      {pathname !== '/' && (
+        <div
+          className={classNames('breadcrumbs', {
+            'background-none': path[0] === 'about' || path[0] === 'contact',
+          })}>
+          <div className="container">
+            <ul className="breadcrumbs__list">
+              <li className="breadcrumbs__item">
+                <Link className="breadcrumbs__link" to="/">
+                  Home
+                </Link>
+              </li>
+              <li className="breadcrumbs__item">
+                <Link className="breadcrumbs__link" to={`/${path[0]}`}>
+                  {path[0][0].toUpperCase() + path[0].slice(1)}
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

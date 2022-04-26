@@ -1,14 +1,17 @@
-import React from 'react';
-
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleOpened } from '../../redux/overlaySlice';
 import { doc, setDoc } from 'firebase/firestore';
-import { database, auth } from '../../utils/firebase-config';
+import { database } from '../../utils/firebase-config';
 import { useForm } from 'react-hook-form';
 
 import Button from '../../components/Button';
 import CreatePostError from './CreatePostError';
 
 function BlogPageComments({ id, postComments, dataParse, getCurrentDate }) {
-  const [comments, setComments] = React.useState(postComments);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const [comments, setComments] = useState(postComments);
 
   const {
     register,
@@ -22,9 +25,9 @@ function BlogPageComments({ id, postComments, dataParse, getCurrentDate }) {
 
     setComments([
       {
-        uid: auth.currentUser.providerData[0].uid,
-        avatar: auth.currentUser.photoURL,
-        name: auth.currentUser.displayName,
+        uid: user.uid,
+        avatar: user.photoURL,
+        name: user.displayName,
         date: getCurrentDate(),
         text: data.text,
       },
@@ -36,9 +39,9 @@ function BlogPageComments({ id, postComments, dataParse, getCurrentDate }) {
       {
         comments: [
           {
-            uid: auth.currentUser.providerData[0].uid,
-            avatar: auth.currentUser.photoURL,
-            name: auth.currentUser.displayName,
+            uid: user.uid,
+            avatar: user.photoURL,
+            name: user.displayName,
             date: getCurrentDate(),
             text: data.text,
           },
@@ -79,21 +82,33 @@ function BlogPageComments({ id, postComments, dataParse, getCurrentDate }) {
           </div>
         )}
       </div>
-      <form className="blog__item-form" onSubmit={handleSubmit(onSubmit)}>
-        <h4 className="blog__item-form-title">Оставить комментрарий</h4>
-        <textarea
-          {...register('text', {
-            required: 'Комментарий должен быть написан',
-            minLength: { value: 20, message: 'Минимум 20 символов' },
-          })}
-          className="textarea"
-          placeholder="Ваш комментарий..."
-        />
-        {errors?.text && <CreatePostError errors={errors?.text} />}
-        <Button ClassName="black" Type="submit">
-          Отправить
-        </Button>
-      </form>
+      {user ? (
+        <form className="blog__item-form" onSubmit={handleSubmit(onSubmit)}>
+          <h4 className="blog__item-form-title">Оставить комментрарий</h4>
+          <textarea
+            {...register('text', {
+              required: 'Комментарий должен быть написан',
+              minLength: { value: 20, message: 'Минимум 20 символов' },
+            })}
+            className="textarea"
+            placeholder="Ваш комментарий..."
+          />
+          {errors?.text && <CreatePostError errors={errors?.text} />}
+          <Button ClassName="black" Type="submit">
+            Отправить
+          </Button>
+        </form>
+      ) : (
+        <div className="blog__item-authorization">
+          <h1 className="blog__item-authorization-title">Авторизация</h1>
+          <p className="blog__item-authorization-text">
+            Чтобы оставить комментарий необходимо авторизоваться!
+          </p>
+          <Button ClassName="tab" onClick={() => dispatch(toggleOpened())}>
+            Авторизоваться
+          </Button>
+        </div>
+      )}
     </>
   );
 }

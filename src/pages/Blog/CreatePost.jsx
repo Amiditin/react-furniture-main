@@ -1,18 +1,22 @@
-import React from 'react';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleOpened } from '../../redux/overlaySlice';
 import { Link } from 'react-router-dom';
-import { addDoc, collection } from 'firebase/firestore';
-import { database, storage, auth } from '../../utils/firebase-config';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { database, storage } from '../../utils/firebase-config';
 import { getCurrentDate } from '../../utils/scripts';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { addDoc, collection } from 'firebase/firestore';
 import CyrillicToTranslit from 'cyrillic-to-translit-js';
 
 import CreatePostForm from './CreatePostForm';
 import Button from '../../components/Button';
 
 function CreatePost() {
-  const [publishProcess, setPublishProcess] = React.useState(false);
-  const [publishProcessTitle, setPublishProcessTitle] = React.useState('Загружаем пост');
-  const [publishProcessText, setPublishProcessText] = React.useState(['Старт']);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const [publishProcess, setPublishProcess] = useState(false);
+  const [publishProcessTitle, setPublishProcessTitle] = useState('Загружаем пост');
+  const [publishProcessText, setPublishProcessText] = useState([]);
   const cyrillicToTranslit = new CyrillicToTranslit();
 
   const uploadImages = async (images, name) => {
@@ -69,7 +73,7 @@ function CreatePost() {
                 </Link>
               )}
             </div>
-          ) : auth.currentUser ? (
+          ) : user ? (
             <div className="create-post__main">
               <h1 className="create-post__main-title">Создать пост</h1>
               <CreatePostForm createPost={handleCreatePost} />
@@ -80,7 +84,9 @@ function CreatePost() {
               <p className="create-post__authorization-text">
                 Для создания постов необходимо авторизоваться!
               </p>
-              <Button ClassName="tab">Авторизоваться</Button>
+              <Button ClassName="tab" onClick={() => dispatch(toggleOpened())}>
+                Авторизоваться
+              </Button>
             </div>
           )}
         </section>

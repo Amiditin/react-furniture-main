@@ -8,7 +8,7 @@ function Aside() {
   return (
     <aside className="aside">
       <div className="aside__search">
-        <input className="input" type="text" placeholder="Search" />
+        <input className="input" type="text" placeholder="Поис" />
         <img className="aside__search-btn" src="/img/search.svg" alt="search" />
       </div>
       <div className="blog__style">

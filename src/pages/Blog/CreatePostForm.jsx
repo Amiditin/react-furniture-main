@@ -1,16 +1,16 @@
-import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
-import { auth } from '../../utils/firebase-config';
 import { listСategories } from '../../utils/constants/listСategories';
 
 import Button from '../../components/Button';
 import CreatePostError from './CreatePostError';
-import { Link } from 'react-router-dom';
 
 function CreatePostForm({ createPost }) {
+  const { user } = useSelector((state) => state.auth);
   const { style, coating, decor } = listСategories;
-
   const {
     register,
     formState: { errors },
@@ -20,14 +20,9 @@ function CreatePostForm({ createPost }) {
     defaultValues: { style: style.list[0].name, coating: [], decor: [] },
   });
 
-  const [author, setAuthor] = React.useState('');
-  const [editAuthor, setEditAuthor] = React.useState(true);
-  const [countImages, setCountImages] = React.useState(0);
-
-  React.useEffect(() => {
-    auth.currentUser && setAuthor(auth.currentUser.displayName);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth.currentUser]);
+  const [author, setAuthor] = useState(user.displayName);
+  const [editAuthor, setEditAuthor] = useState(true);
+  const [countImages, setCountImages] = useState(0);
 
   const onSubmit = (data) => {
     data.author = author;

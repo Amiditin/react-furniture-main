@@ -1,22 +1,13 @@
-import React from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toggleOpened } from '../redux/overlaySlice';
 import { menu } from '../utils/constants';
 
 import Overlay from './Overlay';
 import Breadcrumbs from './Breadcrumbs';
 
 function Header() {
-  const { pathname } = useLocation();
-
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  const [overlayIsOpened, setOverlayIsOpened] = React.useState(false);
-
-  const handleOnClickClose = () => {
-    setOverlayIsOpened(false);
-  };
+  const dispatch = useDispatch();
 
   return (
     <header className="header">
@@ -41,17 +32,17 @@ function Header() {
                 );
               })}
               <img
-                className="header__iconmenu"
+                className="header__icon-login"
                 src="/img/icon-login.svg"
-                alt="icon menu"
-                onClick={() => setOverlayIsOpened(true)}
+                alt="login"
+                onClick={() => dispatch(toggleOpened())}
               />
             </ul>
           </nav>
-          <Overlay opened={overlayIsOpened} onClickClose={handleOnClickClose} />
+          <Overlay />
         </div>
       </div>
-      {pathname === '/' ? false : <Breadcrumbs pathname={pathname} />}
+      <Breadcrumbs />
     </header>
   );
 }
