@@ -8,42 +8,23 @@ function Carousel({ images }) {
 
   const handleOnClickArrowLeft = () => {
     setOffset((currentOffset) => {
-      let newOffset = currentOffset + imgWidth;
-
-      if (newOffset > 0) {
-        newOffset = -imgWidth * (images.length - 1);
-      }
-
-      setCurrentIndex((currentIndex) => {
-        let newIndex = currentIndex - 1;
-
-        if (newIndex < 1) {
-          newIndex = images.length;
-        }
-
-        return newIndex;
-      });
-
-      return newOffset;
+      const newOffset = currentOffset + imgWidth;
+      return newOffset > 0 ? -imgWidth * (images.length - 1) : newOffset;
+    });
+    setCurrentIndex((currentIndex) => {
+      const newIndex = currentIndex - 1;
+      return newIndex < 1 ? images.length : newIndex;
     });
   };
 
   const handleOnClickArrowRight = () => {
     setOffset((currentOffset) => {
-      let newOffset = currentOffset - imgWidth;
-      if (newOffset < -imgWidth * (images.length - 1)) {
-        newOffset = 0;
-      }
-
-      setCurrentIndex((currentIndex) => {
-        let newIndex = currentIndex + 1;
-        if (newIndex > images.length) {
-          newIndex = 1;
-        }
-
-        return newIndex;
-      });
-      return newOffset;
+      const newOffset = currentOffset - imgWidth;
+      return newOffset < -imgWidth * (images.length - 1) ? 0 : newOffset;
+    });
+    setCurrentIndex((currentIndex) => {
+      const newIndex = currentIndex + 1;
+      return newIndex > images.length ? 1 : newIndex;
     });
   };
 

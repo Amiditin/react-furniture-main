@@ -13,8 +13,8 @@ export const dataParse = (date) => {
     'Ноября',
     'Декабря',
   ];
-  let [year, month, day] = date.split('.');
+  let [year, month, day, hours, minutes] = date.split('.');
   month = list[Number(month) - 1];
 
-  return `${day} ${month} ${year}`;
+  return `${day} ${month} ${year} в ${hours}:${minutes}`;
 };

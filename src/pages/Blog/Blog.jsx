@@ -4,7 +4,7 @@ import { dataParse } from '../../utils/scripts';
 import Aside from './Aside';
 
 function Blog() {
-  const posts = useSelector((state) => state.posts.posts);
+  const { posts } = useSelector((state) => state.posts);
 
   return (
     <main className="main">
@@ -15,7 +15,7 @@ function Blog() {
               {posts &&
                 posts.map((post) => (
                   <div className="blog__item" key={post.id}>
-                    {post.images && (
+                    {post.images[0] && (
                       <Link to={`/blog/${post.name}`}>
                         <img className="blog__item-img" src={post.images[0]} alt="img" />
                       </Link>

@@ -10,4 +10,5 @@ export default configureStore({
     posts: postsReducer,
     overlay: overlayReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 });

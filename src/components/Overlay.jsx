@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInWithGoogle, singUserOut } from '../redux/authSlice';
@@ -7,35 +7,22 @@ import { toggleOpened } from '../redux/overlaySlice';
 import Button from './Button';
 
 function Overlay() {
-  const rightsideMenuRef = useRef();
+  const overlayRef = useRef();
   const dispatch = useDispatch();
   const { opened } = useSelector((state) => state.overlay);
   const { user } = useSelector((state) => state.auth);
 
-  const closeOverlay = () => {
-    document.body.removeEventListener('click', handleOnClickOverlay);
-    dispatch(toggleOpened());
-  };
-
-  const handleOnClickOverlay = (event) => {
-    if (!event.path.includes(rightsideMenuRef.current)) {
-      closeOverlay();
-    }
-  };
-
-  useEffect(() => {
-    opened && document.body.addEventListener('click', handleOnClickOverlay);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [opened]);
-
   return (
-    <div className={`overlay ${opened && 'overlay-visible'}`}>
-      <div className="rightside-menu" ref={rightsideMenuRef}>
+    <div
+      className={`overlay ${opened && 'overlay-visible'}`}
+      onClick={(event) => event.target === overlayRef.current && dispatch(toggleOpened())}
+      ref={overlayRef}>
+      <div className="rightside-menu">
         <img
           className="rightside-menu__close"
           src="/img/close.svg"
           alt="close"
-          onClick={closeOverlay}
+          onClick={() => dispatch(toggleOpened())}
         />
         {user ? (
           <div className="rightside-menu__content">
@@ -49,7 +36,7 @@ function Overlay() {
             </div>
             <div className="rightside-menu__btn">
               <Link to="blog/create" className="rightside-menu__btn-link">
-                <Button ClassName="tab" onClick={closeOverlay}>
+                <Button ClassName="tab" onClick={() => dispatch(toggleOpened())}>
                   Создать пост
                 </Button>
               </Link>

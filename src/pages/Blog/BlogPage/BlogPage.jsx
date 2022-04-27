@@ -1,10 +1,11 @@
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { dataParse, getCurrentDate } from '../../utils/scripts';
+import { dataParse } from '../../../utils/scripts';
 
-import Carousel from '../../components/Carousel';
-import Aside from './Aside';
+import Carousel from '../../../components/Carousel';
+import Aside from '../Aside';
 import BlogPageComments from './BlogPageComments';
+import BlogPageForm from './BlogPageForm';
 
 function BlogItem() {
   const { name } = useParams();
@@ -21,7 +22,7 @@ function BlogItem() {
               <>
                 <div className="blog__items">
                   <div className="blog__item">
-                    {post.images && <Carousel images={post.images} />}
+                    {post.images[0] && <Carousel images={post.images} />}
                     <div className="blog__item-info">
                       <span className="blog__item-date">{`${dataParse(post.date)} | `}</span>
                       <span className="blog__item-author">{`${post.author} | `}</span>
@@ -72,12 +73,8 @@ function BlogItem() {
                         />
                       </Link>
                     </div>
-                    <BlogPageComments
-                      postComments={post.comments}
-                      dataParse={dataParse}
-                      getCurrentDate={getCurrentDate}
-                      id={post.id}
-                    />
+                    <BlogPageComments comments={post.comments} />
+                    <BlogPageForm id={post.id} />
                   </div>
                 </div>
                 <Aside />

@@ -215,7 +215,6 @@
   &__style-item,
   &__coating-item {
     margin-bottom: 12px;
-    // font-family: "Montserrat", sans-serif;
     transition: all 0.25s ease-in-out;
 
     &:hover {
@@ -228,6 +227,7 @@
     }
 
     input {
+      cursor: pointer;
       transform: translateY(1px);
 
       &:checked + label {

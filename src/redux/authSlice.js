@@ -2,11 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { auth, provider } from '../utils/firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
 
-export const signInWithGoogle = createAsyncThunk('auth/signInWithGoogle', async (thunkAPI) => {
+export const signInWithGoogle = createAsyncThunk('auth/signInWithGoogle', async () => {
   await signInWithPopup(auth, provider);
 });
 
-export const singUserOut = createAsyncThunk('auth/singUserOut', async (thunkAPI) => {
+export const singUserOut = createAsyncThunk('auth/singUserOut', async () => {
   await signOut(auth);
 
   return null;
