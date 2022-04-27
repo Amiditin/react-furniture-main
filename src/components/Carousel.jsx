@@ -39,18 +39,12 @@ function Carousel({ images }) {
           style={{ transform: `translateX(${offset}px)` }}
         />
       ))}
-      <img
-        className="carousel__arrow-left"
-        src="/img/arrow-big-left.svg"
-        alt="arrow"
-        onClick={handleOnClickArrowLeft}
-      />
-      <img
-        className="carousel__arrow-right"
-        src="/img/arrow-big-right.svg"
-        alt="arrow"
-        onClick={handleOnClickArrowRight}
-      />
+      <div className="carousel__arrow-left" onClick={handleOnClickArrowLeft}>
+        <img src="/img/arrow-big-left.svg" alt="arrow" />
+      </div>
+      <div className="carousel__arrow-right" onClick={handleOnClickArrowRight}>
+        <img src="/img/arrow-big-right.svg" alt="arrow" />
+      </div>
       <span className="carousel__count">{`${currentIndex}/${images.length}`}</span>
     </div>
   );

@@ -5,7 +5,7 @@ $img-height: 415px;
   display: flex;
   overflow: hidden;
   position: relative;
-  
+
   &__img {
     max-width: $img-width;
     min-width: $img-width;
@@ -17,12 +17,20 @@ $img-height: 415px;
   &__arrow-left,
   &__arrow-right {
     position: absolute;
-    padding: $img-height / 2 15px;
+    padding: $img-height / 2 10px;
     cursor: pointer;
-    transition: all 0.25s ease-in-out;
-
 
     &:hover {
+      background-color: rgba($color: #ffffff, $alpha: 0.65);
+
+      img {
+        background-color: rgba($color: #ffffff, $alpha: 0);
+      }
+    }
+
+    img {
+      padding: 9px 12px;
+      border-radius: 50%;
       background-color: rgba($color: #ffffff, $alpha: 0.65);
     }
   }

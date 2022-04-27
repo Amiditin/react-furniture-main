@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { dataParse } from '../../../utils/scripts';
 
@@ -6,6 +6,7 @@ import Carousel from '../../../components/Carousel';
 import Aside from '../Aside';
 import BlogPageComments from './BlogPageComments';
 import BlogPageForm from './BlogPageForm';
+import BlogPageLinks from './BlogPageLinks';
 
 function BlogItem() {
   const { name } = useParams();
@@ -37,14 +38,16 @@ function BlogItem() {
                         </span>
                       ))}
                     </p>
-                    <div className="blog__item-coating">
-                      <h4 className="blog__item-title">Покрытие</h4>
-                      {post.coating.map((item, index) => (
-                        <span className="blog__coating-item" key={index}>
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+                    {post.coating && (
+                      <div className="blog__item-coating">
+                        <h4 className="blog__item-title">Покрытие</h4>
+                        {post.coating.map((item, index) => (
+                          <span className="blog__coating-item" key={index}>
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     {post.decor && (
                       <div className="blog__decor">
                         <h4 className="blog__item-title">Декор</h4>
@@ -55,24 +58,7 @@ function BlogItem() {
                         ))}
                       </div>
                     )}
-                    <div className="blog__item-links">
-                      <Link className="blog__item-link blog__item-link-prev" to="/">
-                        <img
-                          className="blog__item-img-prev"
-                          src="/img/arrow-norm-left.svg"
-                          alt="arrow"
-                        />
-                        Cred selfies edison bulb four dollar toast humblebrag
-                      </Link>
-                      <Link className="blog__item-link blog__item-link-next" to="/">
-                        Semiotics fixie four dollar toast, next level
-                        <img
-                          className="blog__item-img-next"
-                          src="/img/arrow-norm-right.svg"
-                          alt="arrow"
-                        />
-                      </Link>
-                    </div>
+                    <BlogPageLinks id={post.id} posts={posts} />
                     <BlogPageComments comments={post.comments} />
                     <BlogPageForm id={post.id} />
                   </div>
