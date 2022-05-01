@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { listСategories, social } from '../../utils/constants';
 
 function Aside() {
@@ -8,7 +6,7 @@ function Aside() {
   return (
     <aside className="aside">
       <div className="aside__search">
-        <input className="input" type="text" placeholder="Поис" />
+        <input className="input" type="text" placeholder="Поиск" />
         <img className="aside__search-btn" src="/img/search.svg" alt="search" />
       </div>
       <div className="blog__style">

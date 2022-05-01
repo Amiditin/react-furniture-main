@@ -1,5 +1,3 @@
-import React from 'react';
-
 function CreatePostError({ errors }) {
   return (
     <span className="create-post__error">

@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleOpened } from '../../redux/overlaySlice';
 import { addCreatePost } from '../../redux/postsSlice';
-
 import { getCurrentDate } from '../../utils/scripts';
 import CyrillicToTranslit from 'cyrillic-to-translit-js';
 

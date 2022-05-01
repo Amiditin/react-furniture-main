@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCreateComment } from '../../../redux/postsSlice';
@@ -13,9 +14,16 @@ function BlogPageForm({ id }) {
 
   const {
     register,
-    formState: { errors },
     handleSubmit,
+    reset,
+    formState: { errors, isSubmitSuccessful },
   } = useForm({ mode: 'onBlur' });
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset({ text: '' });
+    }
+  }, [isSubmitSuccessful, reset]);
 
   const handleCreateComment = (data) => {
     dispatch(

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-
 import { listСategories } from '../../utils/constants/listСategories';
 
 import Button from '../../components/Button';
@@ -96,7 +95,7 @@ function CreatePostForm({ createPost }) {
           <input
             {...register('images')}
             type="file"
-            accept=".jpg, .jpeg, .png"
+            accept=".jpg, .jpeg, .png .webp"
             id="images-id"
             multiple
             onChange={handleUploadImages}

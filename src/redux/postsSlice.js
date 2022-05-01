@@ -36,7 +36,7 @@ export const addCreatePost = createAsyncThunk('posts/addCreatePost', async (post
     post.images = [];
   }
 
-  await addDoc(collection(database, 'blog-posts'), post).then();
+  await addDoc(collection(database, 'blog-posts'), post).then((data) => (post.id = data.id));
 
   return post;
 });
@@ -55,7 +55,7 @@ const postsSlice = createSlice({
   name: 'posts',
   initialState: {
     posts: [],
-    loading: false,
+    loading: true,
     error: false,
   },
   reducers: {},
