@@ -1,4 +1,4 @@
-function CreatePostError({ errors }) {
+function FormError({ errors }) {
   return (
     <span className="create-post__error">
       <img src="/img/tools-icons/error.svg" alt="error" />
@@ -7,4 +7,4 @@ function CreatePostError({ errors }) {
   );
 }
 
-export default CreatePostError;
+export default FormError;

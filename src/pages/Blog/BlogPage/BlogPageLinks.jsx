@@ -23,7 +23,7 @@ function BlogPageLinks({ id, posts }) {
 
   return (
     <div className="blog__item-links">
-      <div className="blog__item-link">
+      <div className="blog__item-link-p">
         {prevPost && (
           <Link className="blog__item-link-prev" to={`/blog/${prevPost.name}`}>
             <img className="blog__item-img-prev" src="/img/arrow-norm-left.svg" alt="arrow" />
@@ -31,7 +31,7 @@ function BlogPageLinks({ id, posts }) {
           </Link>
         )}
       </div>
-      <div className="blog__item-link">
+      <div className="blog__item-link-n">
         {nextPost && (
           <Link className="blog__item-link-next" to={`/blog/${nextPost.name}`}>
             {nextPost.title}

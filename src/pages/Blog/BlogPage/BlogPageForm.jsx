@@ -6,7 +6,7 @@ import { toggleOpened } from '../../../redux/overlaySlice';
 import { getCurrentDate } from '../../../utils/scripts';
 
 import Button from '../../../components/Button';
-import CreatePostError from '../CreatePostError';
+import FormError from '../../../components/FormError';
 
 function BlogPageForm({ id }) {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ function BlogPageForm({ id }) {
             className="textarea"
             placeholder="Ваш комментарий..."
           />
-          {errors?.text && <CreatePostError errors={errors?.text} />}
+          {errors?.text && <FormError errors={errors?.text} />}
           <Button ClassName="black" Type="submit">
             Отправить
           </Button>

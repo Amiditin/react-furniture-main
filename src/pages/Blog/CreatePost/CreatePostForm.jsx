@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { listСategories } from '../../utils/constants/listСategories';
+import { listСategories } from '../../../utils/constants/listСategories';
 
-import Button from '../../components/Button';
-import CreatePostError from './CreatePostError';
+import Button from '../../../components/Button';
+import FormError from '../../../components/FormError';
 
 function CreatePostForm({ createPost }) {
   const { user } = useSelector((state) => state.auth);
@@ -65,7 +65,7 @@ function CreatePostForm({ createPost }) {
               value={author}
             />
           </div>
-          {errors?.author && <CreatePostError errors={errors?.author} />}
+          {errors?.author && <FormError errors={errors?.author} />}
         </div>
         <div className="create-post__input">
           <input
@@ -77,7 +77,7 @@ function CreatePostForm({ createPost }) {
             placeholder="Заголовок"
             type="text"
           />
-          {errors?.title && <CreatePostError errors={errors?.title} />}
+          {errors?.title && <FormError errors={errors?.title} />}
         </div>
         <div className="create-post__textarea">
           <textarea
@@ -88,7 +88,7 @@ function CreatePostForm({ createPost }) {
             className="textarea"
             placeholder="Введите текст поста"
           />
-          {errors?.text && <CreatePostError errors={errors?.text} />}
+          {errors?.text && <FormError errors={errors?.text} />}
         </div>
         <div className="create-post__images">
           <h1 className="create-post__images-title">Картинки:</h1>

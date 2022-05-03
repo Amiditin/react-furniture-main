@@ -6,9 +6,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
-import Blog from './pages/Blog/Blog';
+import Blog from './pages/Blog/Blog/Blog';
 import BlogPage from './pages/Blog/BlogPage/BlogPage';
-import CreatePost from './pages/Blog/CreatePost';
+import CreatePost from './pages/Blog/CreatePost/CreatePost';
 import NotFound from './pages/NotFound';
 
 function App() {

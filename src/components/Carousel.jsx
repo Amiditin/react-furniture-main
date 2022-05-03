@@ -1,10 +1,16 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function Carousel({ images }) {
-  const [currentIndex, setCurrentIndex] = React.useState(1);
-  const [offset, setOffset] = React.useState(0);
-
+  const [currentIndex, setCurrentIndex] = useState();
+  const [offset, setOffset] = useState();
+  const location = useLocation();
   const imgWidth = 730;
+
+  useEffect(() => {
+    setCurrentIndex(1);
+    setOffset(0);
+  }, [location]);
 
   const handleOnClickArrowLeft = () => {
     setOffset((currentOffset) => {

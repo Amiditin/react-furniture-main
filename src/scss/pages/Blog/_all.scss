@@ -1,5 +1,6 @@
 @import "./aside";
 @import "./create";
+@import "./pagination";
 
 .blog {
   padding: 60px 0 100px;
@@ -132,9 +133,14 @@
     display: flex;
     justify-content: space-between;
   }
-  &__item-link {
+  &__item-link-p,
+  &__item-link-n {
     display: flex;
+    align-items: center;
     width: 260px;
+  }
+  &__item-link-n {
+    justify-content: flex-end;
   }
   &__item-link-prev,
   &__item-link-next {
@@ -245,35 +251,5 @@
     color: $title;
     @extend %title-font;
     margin-bottom: 25px;
-  }
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &__list {
-    display: flex;
-  }
-
-  &__list-item {
-    margin: 0 6px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #707070;
-  }
-
-  &__list-item--active {
-    color: $title;
-  }
-
-  &__arrow {
-    margin: 0 6px;
-  }
-
-  &__arrow--disabled {
-    opacity: 1;
-    pointer-events: none;
   }
 }
