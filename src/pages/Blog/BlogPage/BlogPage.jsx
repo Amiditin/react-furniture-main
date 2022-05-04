@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addComment, deleteComment } from '../../../redux/postsSlice';
 
 import Aside from '../Aside';
 import BlogPageLoading from './BlogPageLoading';
@@ -11,8 +13,16 @@ import BlogPageForm from './BlogPageForm';
 function BlogItem() {
   const { name } = useParams();
   const { loading, posts } = useSelector((state) => state.posts);
+  const { data, status } = useSelector((state) => state.comments);
 
+  const dispatch = useDispatch();
   const post = posts.find((post) => post.name === name);
+
+  useEffect(() => {
+    status === 'created' && dispatch(addComment({ postId: data.postId, comment: data.comment }));
+    status === 'removed' &&
+      dispatch(deleteComment({ postId: data.postId, comment: data.comment, index: data.index }));
+  }, [dispatch, status, data]);
 
   return (
     <main className="main">
@@ -25,9 +35,9 @@ function BlogItem() {
               ) : (
                 <div className="blog__item">
                   <BlogPageContent post={post} />
-                  <BlogPageLinks id={post.id} posts={posts} />
-                  <BlogPageComments comments={post.comments} />
-                  <BlogPageForm id={post.id} />
+                  <BlogPageLinks postId={post.id} posts={posts} />
+                  <BlogPageComments postId={post.id} comments={post.comments} />
+                  <BlogPageForm postId={post.id} />
                 </div>
               )}
             </div>

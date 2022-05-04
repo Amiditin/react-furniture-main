@@ -1,6 +1,7 @@
 @import "./aside";
 @import "./create";
 @import "./pagination";
+@import "./comments";
 
 .blog {
   padding: 60px 0 100px;
@@ -184,17 +185,10 @@
     margin: auto 0 auto 10px;
   }
 
-  &__item-comments {
-    margin-bottom: 40px;
-  }
   &__item-authorization {
     button {
       margin: 0;
     }
-  }
-  &__item-nocomments {
-    color: #8f8d8d;
-    margin-bottom: 30px;
   }
 
   &__item-authorization-text {
@@ -202,41 +196,12 @@
     margin-bottom: 22px;
   }
 
-  &__item-comments-title,
   &__item-authorization-title {
     color: $title;
     @extend %title-font;
     line-height: 31px;
     font-size: 20px;
     margin-bottom: 20px;
-  }
-
-  &__item-comments-item {
-    display: flex;
-    // justify-content: space-between;
-    align-items: start;
-    margin-bottom: 50px;
-  }
-
-  &__item-comments-avatar {
-    width: 64px;
-    height: 64px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 13px;
-  }
-
-  &__item-comments-name {
-    color: $title;
-    @extend %title-font;
-    line-height: 23px;
-  }
-
-  &__item-comments-date {
-    margin-top: -3px;
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: #a1a1a1;
   }
 
   &__item-form {

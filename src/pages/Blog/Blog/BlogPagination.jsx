@@ -1,15 +1,21 @@
 import classNames from 'classnames';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCountPages, goToPage } from '../../../redux/paginationSlice';
 
 function BlogPagination({ count }) {
   const { countPages, currentPage } = useSelector((state) => state.pagination);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(getCountPages({ count: count }));
   }, [dispatch, count]);
+
+  useEffect(() => {
+    dispatch(goToPage({ page: 1 }));
+  }, [dispatch, location]);
 
   return (
     <div className="pagination">

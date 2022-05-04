@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
-import { addCreateComment } from '../../../redux/postsSlice';
+import { addCreateComment } from '../../../redux/commentsSlice';
 import { toggleOpened } from '../../../redux/overlaySlice';
 import { getCurrentDate } from '../../../utils/scripts';
 
 import Button from '../../../components/Button';
 import FormError from '../../../components/FormError';
 
-function BlogPageForm({ id }) {
+function BlogPageForm({ postId }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
@@ -28,7 +28,7 @@ function BlogPageForm({ id }) {
   const handleCreateComment = (data) => {
     dispatch(
       addCreateComment({
-        id: id,
+        postId: postId,
         comment: {
           authorUid: user.uid,
           author: user.displayName,

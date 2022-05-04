@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, doc, getDocs, addDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { database, storage } from '../utils/firebase-config';
 
@@ -41,16 +41,6 @@ export const addCreatePost = createAsyncThunk('posts/addCreatePost', async (post
   return post;
 });
 
-export const addCreateComment = createAsyncThunk(
-  'posts/addCreateComment',
-  async ({ id, comment }) => {
-    const postRef = doc(database, 'blog-posts', id);
-    console.log(id, postRef);
-    await updateDoc(postRef, { comments: arrayUnion(comment) }).then(console.log('отправил'));
-    return { id, comment };
-  },
-);
-
 const postsSlice = createSlice({
   name: 'posts',
   initialState: {
@@ -58,7 +48,24 @@ const postsSlice = createSlice({
     loading: true,
     error: false,
   },
-  reducers: {},
+  reducers: {
+    addComment(state, { payload }) {
+      for (let i = 0; i < state.posts.length; i++) {
+        if (state.posts[i].id === payload.postId) {
+          state.posts[i].comments.push(payload.comment);
+          break;
+        }
+      }
+    },
+    deleteComment(state, { payload }) {
+      for (let i = 0; i < state.posts.length; i++) {
+        if (state.posts[i].id === payload.postId) {
+          state.posts[i].comments.splice(payload.index, 1);
+          break;
+        }
+      }
+    },
+  },
   extraReducers: {
     [fetchPosts.pending]: (state) => {
       state.loading = true;
@@ -82,17 +89,9 @@ const postsSlice = createSlice({
       state.error = false;
       state.posts.unshift(payload);
     },
-    [addCreateComment.fulfilled]: (state, { payload }) => {
-      for (let i = 0; i < state.posts.length; i++) {
-        if (state.posts[i].id === payload.id) {
-          state.posts[i].comments.push(payload.comment);
-          break;
-        }
-      }
-    },
   },
 });
 
-export const { _ } = postsSlice.actions;
+export const { addComment, deleteComment } = postsSlice.actions;
 
 export default postsSlice.reducer;

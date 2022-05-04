@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-function BlogPageLinks({ id, posts }) {
+function BlogPageLinks({ postId, posts }) {
   const [prevPost, setPrevPost] = useState(null);
   const [nextPost, setNextPost] = useState(null);
 
@@ -9,7 +9,7 @@ function BlogPageLinks({ id, posts }) {
     setPrevPost(null);
     setNextPost(null);
     for (let i = 0; i < posts.length; i++) {
-      if (posts[i].id === id) {
+      if (posts[i].id === postId) {
         if (i !== 0) {
           setPrevPost({ title: posts[i - 1].title, name: posts[i - 1].name });
         }
@@ -19,7 +19,7 @@ function BlogPageLinks({ id, posts }) {
         return;
       }
     }
-  }, [id, posts]);
+  }, [postId, posts]);
 
   return (
     <div className="blog__item-links">
