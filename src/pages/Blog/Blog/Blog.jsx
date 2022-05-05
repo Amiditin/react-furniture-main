@@ -6,7 +6,7 @@ import BlogPosts from './BlogPosts';
 import Aside from '../Aside';
 
 function Blog() {
-  const { loading, posts } = useSelector((state) => state.posts);
+  const { loading, filteredPosts } = useSelector((state) => state.posts);
   const { currentPage } = useSelector((state) => state.pagination);
 
   return (
@@ -17,11 +17,18 @@ function Blog() {
             <div className="blog__items">
               {loading ? (
                 <BlogPostsLoading />
-              ) : (
+              ) : filteredPosts.length !== 0 ? (
                 <>
-                  <BlogPosts posts={posts.slice(-3 + currentPage * 3, 0 + currentPage * 3)} />
-                  <BlogPagination count={Math.ceil(posts.length / 3)} />
+                  <BlogPosts
+                    posts={filteredPosts.slice(-3 + currentPage * 3, 0 + currentPage * 3)}
+                  />
+                  <BlogPagination count={Math.ceil(filteredPosts.length / 3)} />
                 </>
+              ) : (
+                <div className="blog__not-found">
+                  <h1 className="blog__not-found-title">Ошибка поиска</h1>
+                  <p className="blog__not-found-text">Не удалось найти посты</p>
+                </div>
               )}
             </div>
             <Aside />

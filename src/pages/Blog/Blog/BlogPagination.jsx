@@ -63,14 +63,15 @@ function BlogPagination({ count }) {
         )}
 
         {currentPage + 1 < countPages - 1 && '...'}
-
-        <li
-          className={classNames('pagination__list-item', {
-            'pagination__list-item--active': currentPage === countPages,
-          })}
-          onClick={() => dispatch(goToPage({ page: countPages }))}>
-          {countPages}
-        </li>
+        {countPages > 1 && (
+          <li
+            className={classNames('pagination__list-item', {
+              'pagination__list-item--active': currentPage === countPages,
+            })}
+            onClick={() => dispatch(goToPage({ page: countPages }))}>
+            {countPages}
+          </li>
+        )}
       </ul>
       <img
         className={classNames('pagination__arrow-right', {

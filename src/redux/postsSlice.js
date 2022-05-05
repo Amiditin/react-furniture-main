@@ -45,6 +45,7 @@ const postsSlice = createSlice({
   name: 'posts',
   initialState: {
     posts: [],
+    filteredPosts: [],
     loading: true,
     error: false,
   },
@@ -65,6 +66,22 @@ const postsSlice = createSlice({
         }
       }
     },
+    filterPosts(state, { payload }) {
+      console.log(payload);
+      state.filteredPosts = state.posts.filter(
+        (post) =>
+          (payload.search
+            ? post.title.toLowerCase().includes(payload.search.toLowerCase())
+            : true) &&
+          (payload.style ? post.style === payload.style : true) &&
+          (payload.coating.length !== 0
+            ? payload.coating.every((item) => post.coating.includes(item))
+            : true) &&
+          (payload.decor.length !== 0
+            ? payload.decor.every((item) => post.decor.includes(item))
+            : true),
+      );
+    },
   },
   extraReducers: {
     [fetchPosts.pending]: (state) => {
@@ -74,7 +91,7 @@ const postsSlice = createSlice({
     [fetchPosts.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.error = false;
-      state.posts = payload;
+      state.filteredPosts = state.posts = payload;
     },
     [fetchPosts.rejected]: (state) => {
       state.loading = false;
@@ -92,6 +109,6 @@ const postsSlice = createSlice({
   },
 });
 
-export const { addComment, deleteComment } = postsSlice.actions;
+export const { addComment, deleteComment, filterPosts } = postsSlice.actions;
 
 export default postsSlice.reducer;

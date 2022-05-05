@@ -54,14 +54,6 @@
     cursor: pointer;
   }
 
-  &__social {
-    display: flex;
-  }
-
-  &__social-item {
-    margin-right: 20px;
-  }
-
   &__items {
     max-width: 730px;
   }
@@ -216,5 +208,38 @@
     color: $title;
     @extend %title-font;
     margin-bottom: 25px;
+  }
+  &__not-found {
+    margin-top: 70px;
+    margin-left: 190px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__not-found-title {
+    color: $title;
+    @extend %title-font;
+    font-size: 36px;
+    line-height: 51px;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    position: relative;
+    text-align: center;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 200px;
+      height: 1px;
+      margin: 0 auto;
+      background: #6d7278;
+    }
+  }
+  &__not-found-text {
+    font-size: 20px;
+    line-height: 41px;
   }
 }
