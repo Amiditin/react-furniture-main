@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterPosts } from '../../redux/postsSlice';
@@ -10,42 +10,39 @@ import FormError from '../../components/FormError';
 
 function Aside() {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
   const { loading } = useSelector((state) => state.posts);
-  const [searchParams, setSearchParams] = useSearchParams();
   const { style, coating, decor } = listСategories;
+  const [searchParams, setSearchParams] = useSearchParams();
   const {
-    register,
     formState: { errors },
+    register,
     handleSubmit,
-  } = useForm({
-    mode: 'onBlur',
-    defaultValues: {
-      search: searchParams.get('search'),
-      style: searchParams.get('style'),
-      coating: searchParams.getAll('coating'),
-      decor: searchParams.getAll('decor'),
-    },
-  });
-
-  const onSubmit = (data) => {
-    setSearchParams({
-      ...data,
-      search: data.search ? data.search : [],
-      style: data.style ? data.style : [],
-    });
-  };
+    reset,
+  } = useForm({ mode: 'onBlur' });
 
   useEffect(() => {
-    !loading &&
-      dispatch(
-        filterPosts({
-          search: searchParams.get('search'),
-          style: searchParams.get('style'),
-          coating: searchParams.getAll('coating'),
-          decor: searchParams.getAll('decor'),
-        }),
-      );
-  }, [dispatch, loading, searchParams]);
+    if (searchParams && !location.state) {
+      const params = {
+        search: searchParams.get('search'),
+        style: searchParams.get('style'),
+        coating: searchParams.getAll('coating'),
+        decor: searchParams.getAll('decor'),
+      };
+      reset(params);
+      !loading && dispatch(filterPosts(params));
+    } else
+      setSearchParams({
+        ...location.state,
+        search: location.state.search ? location.state.search : [],
+        style: location.state.style ? location.state.style : [],
+      });
+  }, [dispatch, loading, location, reset, searchParams, setSearchParams]);
+
+  const onSubmit = (data) => {
+    navigate('/blog', { state: data });
+  };
 
   return (
     <aside className="aside">
@@ -61,7 +58,7 @@ function Aside() {
           />
           <img
             className="aside__search-btn"
-            src="/img/search.svg"
+            src="/img/tools-icons/search.svg"
             alt="search"
             onClick={handleSubmit(onSubmit)}
           />
@@ -79,6 +76,11 @@ function Aside() {
               </option>
             ))}
           </select>
+          <img
+            className="aside__style-arrow"
+            src="/img/tools-icons/arrow-big-left.svg"
+            alt="arrow"
+          />
         </div>
         <div className="aside__coating">
           <h3 className="aside__coating-title">{coating.name}</h3>
@@ -109,9 +111,21 @@ function Aside() {
             ))}
           </div>
         </div>
-        <div className="aside__button-submit">
+        <div className="aside__buttons">
           <Button ClassName="black" Type="submit">
             Применить
+          </Button>
+          <Button
+            ClassName="tab"
+            onClick={() =>
+              reset({
+                search: '',
+                style: '',
+                coating: [],
+                decor: [],
+              })
+            }>
+            Сбросить
           </Button>
         </div>
       </form>

@@ -4,7 +4,7 @@ import GalleryCell from '../../components/GalleryCell';
 
 import Slider from './sections/Slider';
 import WorksPath from './sections/WorksPath';
-import BlogBox from './sections/BlogBox';
+import BlogBox from './sections/BlogBox/BlogBox';
 import Decor from './sections/Decor';
 import NewCollection from './sections/NewCollection';
 

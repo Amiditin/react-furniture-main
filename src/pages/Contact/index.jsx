@@ -52,7 +52,7 @@ function Contact() {
             <div className="contact__street">Green St</div>
             <div className="contact__city">San Francisco, California(CA), 94133</div>
             <a className="contact__info-email" href="mailto:ouremailaddress@email.com">
-              <img src="/img/icons/envelope.svg" alt="envelope" />
+              <img src="/img/tools-icons/envelope.svg" alt="envelope" />
               ouremailaddress@email.com
             </a>
             <div className="contact__form">

@@ -23,7 +23,7 @@ function BlogPagination({ count }) {
         className={classNames('pagination__arrow-left', {
           'pagination__arrow--disabled': currentPage === 1,
         })}
-        src="img/arrow-left.svg"
+        src="img/tools-icons/arrow-left.svg"
         alt="arrow"
         onClick={() => dispatch(goToPage({ page: currentPage - 1 }))}
       />
@@ -77,7 +77,7 @@ function BlogPagination({ count }) {
         className={classNames('pagination__arrow-right', {
           'pagination__arrow--disabled': currentPage === countPages,
         })}
-        src="img/arrow-right.svg"
+        src="img/tools-icons/arrow-right.svg"
         alt="arrow"
         onClick={() => dispatch(goToPage({ page: currentPage + 1 }))}
       />

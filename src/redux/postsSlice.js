@@ -67,11 +67,11 @@ const postsSlice = createSlice({
       }
     },
     filterPosts(state, { payload }) {
-      console.log(payload);
       state.filteredPosts = state.posts.filter(
         (post) =>
           (payload.search
-            ? post.title.toLowerCase().includes(payload.search.toLowerCase())
+            ? post.title.toLowerCase().includes(payload.search.toLowerCase()) ||
+              post.author.toLowerCase().includes(payload.search.toLowerCase())
             : true) &&
           (payload.style ? post.style === payload.style : true) &&
           (payload.coating.length !== 0

@@ -1,15 +1,11 @@
-import { dataParse } from '../../../utils/scripts';
 import Carousel from '../../../components/Carousel';
+import BlogItemInfo from '../../../components/BlogItemInfo';
 
 function BlogPageContent({ post }) {
   return (
     <div className="blog__item-content">
       {post.images[0] && <Carousel images={post.images} />}
-      <div className="blog__item-info">
-        <span className="blog__item-date">{`${dataParse(post.date)} | `}</span>
-        <span className="blog__item-author">{`${post.author} | `}</span>
-        <span className="blog__item-style">{post.style}</span>
-      </div>
+      <BlogItemInfo post={post} />
       <h3 className="blog__item-title">{post.title}</h3>
       <p className="blog__item-text">
         {post.text.split('\n').map((value, index) => (

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function BlogPageLinks({ postId, posts }) {
   const [prevPost, setPrevPost] = useState(null);
   const [nextPost, setNextPost] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     setPrevPost(null);
@@ -25,17 +26,25 @@ function BlogPageLinks({ postId, posts }) {
     <div className="blog__item-links">
       <div className="blog__item-link-p">
         {prevPost && (
-          <Link className="blog__item-link-prev" to={`/blog/${prevPost.name}`}>
-            <img className="blog__item-img-prev" src="/img/arrow-norm-left.svg" alt="arrow" />
+          <Link className="blog__item-link-prev" to={`/blog/${prevPost.name}${location.search}`}>
+            <img
+              className="blog__item-img-prev"
+              src="/img/tools-icons/arrow-norm-left.svg"
+              alt="arrow"
+            />
             {prevPost.title}
           </Link>
         )}
       </div>
       <div className="blog__item-link-n">
         {nextPost && (
-          <Link className="blog__item-link-next" to={`/blog/${nextPost.name}`}>
+          <Link className="blog__item-link-next" to={`/blog/${nextPost.name}${location.search}`}>
             {nextPost.title}
-            <img className="blog__item-img-next" src="/img/arrow-norm-right.svg" alt="arrow" />
+            <img
+              className="blog__item-img-next"
+              src="/img/tools-icons/arrow-norm-right.svg"
+              alt="arrow"
+            />
           </Link>
         )}
       </div>

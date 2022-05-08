@@ -1,25 +1,26 @@
-import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function Collection() {
+  const { loading, posts } = useSelector((state) => state.posts);
   return (
     <div className="container-fluid">
       <div className="collection">
-        {Array.from({ length: 5 }, (_, index) => {
-          return (
-            <Link to="/" className="collection__item" key={index}>
-              <img
-                className="collection__img"
-                src={`/img/content/collection-${index + 1}.jpg`}
-                alt={`collection-${index + 1}`}
-              />
-              <div className="collection__info">
-                <h6 className="collection__info-title">Truffaut literally trust</h6>
-                <p className="collection__info-text">Living room furntiture | Chair</p>
-              </div>
-            </Link>
-          );
-        })}
+        {loading ? (
+          <span>Loading</span>
+        ) : (
+          <>
+            {posts.slice(0, 5).map((post) => (
+              <Link className="collection__item" to={`/blog/${post.name}`} key={post.id}>
+                <img className="collection__img" src={post.images[0]} alt="collection-img" />
+                <div className="collection__info">
+                  <h6 className="collection__info-title">{post.title}</h6>
+                  <p className="collection__info-text">{post.style}</p>
+                </div>
+              </Link>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

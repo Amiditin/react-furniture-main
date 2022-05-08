@@ -20,7 +20,7 @@ function Overlay() {
       <div className="rightside-menu">
         <img
           className="rightside-menu__close"
-          src="/img/close.svg"
+          src="/img/tools-icons/close.svg"
           alt="close"
           onClick={() => dispatch(toggleOpened())}
         />

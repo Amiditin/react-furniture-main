@@ -35,7 +35,7 @@ function Footer() {
               <h6 className="footer__info-title">{textInfo.title}</h6>
               <p className="footer__info-text">{textInfo.text}</p>
               <a className="footer__info-email" href="mailto:ouremailaddress@email.com">
-                <img src="/img/icons/envelope.svg" alt="envelope" />
+                <img src="/img/tools-icons/envelope.svg" alt="envelope" />
                 {textInfo.email}
               </a>
               <div className="footer__form">

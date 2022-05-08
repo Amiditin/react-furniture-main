@@ -33,7 +33,7 @@ function Header() {
               })}
               <img
                 className="header__icon-login"
-                src="/img/icon-login.svg"
+                src="/img/tools-icons/icon-login.svg"
                 alt="login"
                 onClick={() => dispatch(toggleOpened())}
               />

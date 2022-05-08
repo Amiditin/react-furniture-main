@@ -46,10 +46,10 @@ function Carousel({ images }) {
         />
       ))}
       <div className="carousel__arrow-left" onClick={handleOnClickArrowLeft}>
-        <img src="/img/arrow-big-left.svg" alt="arrow" />
+        <img src="/img/tools-icons/arrow-big-left.svg" alt="prev" />
       </div>
       <div className="carousel__arrow-right" onClick={handleOnClickArrowRight}>
-        <img src="/img/arrow-big-right.svg" alt="arrow" />
+        <img src="/img/tools-icons/arrow-big-right.svg" alt="next" />
       </div>
       <span className="carousel__count">{`${currentIndex}/${images.length}`}</span>
     </div>
