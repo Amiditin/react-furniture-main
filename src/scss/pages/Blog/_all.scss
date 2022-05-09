@@ -92,6 +92,7 @@
     margin-bottom: 15px;
     text-align: justify;
     word-spacing: 4px;
+    position: relative;
   }
 
   &__item-text {
@@ -249,5 +250,24 @@
   &__not-found-text {
     font-size: 20px;
     line-height: 41px;
+  }
+
+  &__post-delete {
+    width: 24px;
+    height: 24px;
+    opacity: 0.4;
+    position: absolute;
+    top: -38px;
+    right: 0;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__post-delete--active {
+    opacity: 1;
   }
 }

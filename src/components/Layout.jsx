@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { fetchPosts } from '../redux/postsSlice';
 import { getCurrentUser } from '../redux/authSlice';
 
-import Footer from './Footer';
+import Footer from './Footer/Footer';
 import Header from './Header';
 
 function Layout() {

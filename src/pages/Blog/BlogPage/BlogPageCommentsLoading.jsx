@@ -5,8 +5,8 @@ function BlogPageCommentsLoading() {
     <ContentLoader
       speed={2}
       width={730}
-      height={190}
-      viewBox="0 0 730 190"
+      height={140}
+      viewBox="0 0 730 140"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb">
       <circle cx="32" cy="32" r="32" />

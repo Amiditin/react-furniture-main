@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Collection from '../../components/Collection';
-import Partners from '../../components/Partners';
+import Technologies from '../../components/Technologies';
 
 import AboutUs from './sections/AboutUs';
 import Inspiration from './sections/Inspiration';
@@ -12,7 +12,7 @@ function About() {
       <AboutUs />
       <Collection />
       <Inspiration />
-      <Partners />
+      <Technologies />
     </main>
   );
 }

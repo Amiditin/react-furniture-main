@@ -5,7 +5,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
-import Contact from './pages/Contact';
+import Contact from './pages/Contact/Contact';
 import Blog from './pages/Blog/Blog/Blog';
 import BlogPage from './pages/Blog/BlogPage/BlogPage';
 import CreatePost from './pages/Blog/CreatePost/CreatePost';

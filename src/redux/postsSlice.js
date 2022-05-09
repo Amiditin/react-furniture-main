@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, deleteDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { database, storage } from '../utils/firebase-config';
 
@@ -39,6 +39,12 @@ export const addCreatePost = createAsyncThunk('posts/addCreatePost', async (post
   await addDoc(collection(database, 'blog-posts'), post).then((data) => (post.id = data.id));
 
   return post;
+});
+
+export const deletePost = createAsyncThunk('posts/deletePost', async ({ postId }) => {
+  await deleteDoc(doc(database, 'blog-posts', postId));
+
+  return { postId };
 });
 
 const postsSlice = createSlice({
@@ -105,6 +111,21 @@ const postsSlice = createSlice({
       state.loading = false;
       state.error = false;
       state.posts.unshift(payload);
+    },
+    [deletePost.fulfilled]: (state, { payload }) => {
+      state.error = false;
+      for (let i = 0; i < state.posts.length; i++) {
+        if (state.posts[i].id === payload.postId) {
+          state.posts.splice(i, 1);
+          break;
+        }
+      }
+      for (let i = 0; i < state.filteredPosts.length; i++) {
+        if (state.filteredPosts[i].id === payload.postId) {
+          state.filteredPosts.splice(i, 1);
+          break;
+        }
+      }
     },
   },
 });

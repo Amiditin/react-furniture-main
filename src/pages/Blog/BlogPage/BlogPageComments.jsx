@@ -1,22 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeComment } from '../../../redux/commentsSlice';
+import { useSelector } from 'react-redux';
 import { dataParse } from '../../../utils/scripts';
 
 import BlogPageCommentsLoading from './BlogPageCommentsLoading';
-import Button from '../../../components/Button';
+import BlogPageCommentsDelete from './BlogPageCommentsDelete';
 
-function BlogPageComments({ postId, comments }) {
-  const [confirmRequest, setConfirmRequest] = useState(false);
-  const { user } = useSelector((state) => state.auth);
-  const { data, status } = useSelector((state) => state.comments);
-  const location = useLocation();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    setConfirmRequest(false);
-  }, [location, data]);
+function BlogPageComments({ comments, postId }) {
+  const { status } = useSelector((state) => state.comments);
 
   return (
     <div className="blog__comments">
@@ -38,42 +27,35 @@ function BlogPageComments({ postId, comments }) {
                   ))}
                 </p>
               </div>
-              {user?.uid === comment.authorUid && (
-                <img
-                  className={`blog__comments-delete ${
-                    confirmRequest === index && 'blog__comments-delete--active'
-                  }`}
-                  src="/img/tools-icons/delete.svg"
-                  alt="delete"
-                  title="Удалить"
-                  onClick={() => setConfirmRequest(index)}
-                />
-              )}
-              {confirmRequest === index && (
-                <div className="blog__comments-confirm">
-                  <span className="blog__comments-confirm-title">Удалить комментарий?</span>
-                  <div className="blog__comments-confirm-buttons">
-                    <Button ClassName="tab" onClick={() => setConfirmRequest(false)}>
-                      Отмена
-                    </Button>
-                    <Button
-                      ClassName="black"
-                      onClick={() =>
-                        dispatch(removeComment({ postId: postId, comment: comment, index: index }))
-                      }>
-                      Удалить
-                    </Button>
-                  </div>
-                </div>
-              )}
+              <BlogPageCommentsDelete comment={comment} index={index} postId={postId} />
             </div>
           ))}
           {status === 'loading' && <BlogPageCommentsLoading />}
         </div>
       ) : (
-        <div className="blog__item-nocomments">
-          Здесь пока нет ни одного комментария, вы можете стать первым!
-        </div>
+        <>
+          {status === 'loading' ? (
+            <BlogPageCommentsLoading />
+          ) : (
+            <div className="blog__item-nocomments">
+              Здесь пока нет ни одного комментария, вы можете стать первым!
+              <br />
+              <br />
+              　∧＿∧
+              <br />
+              （｡･ω･｡)つ━☆・*。
+              <br />
+              ⊂　　 ノ 　　　・゜+.
+              <br />
+              　しーＪ　　　°。+ *´¨)
+              <br />
+              　　　　　　　　　.• ´¸.•*´¨) ¸.•*¨)
+              <br />
+              　　　　　　　　　　(¸.•´ (¸.•’*
+              <br />
+            </div>
+          )}
+        </>
       )}
     </div>
   );

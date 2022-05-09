@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import BlogPostsLoading from './BlogPostsLoading';
 import BlogPagination from './BlogPagination';
 import BlogPosts from './BlogPosts';
-import Aside from '../Aside';
+import Aside from '../Aside/Aside';
 
 function Blog() {
   const { loading, filteredPosts } = useSelector((state) => state.posts);

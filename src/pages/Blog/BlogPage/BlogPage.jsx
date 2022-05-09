@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment, deleteComment } from '../../../redux/postsSlice';
 
-import Aside from '../Aside';
+import Aside from '../Aside/Aside';
 import BlogPageLoading from './BlogPageLoading';
 import BlogPageContent from './BlogPageContent';
 import BlogPageLinks from './BlogPageLinks';
@@ -33,12 +33,21 @@ function BlogItem() {
               {loading ? (
                 <BlogPageLoading />
               ) : (
-                <div className="blog__item">
-                  <BlogPageContent post={post} />
-                  <BlogPageLinks postId={post.id} posts={posts} />
-                  <BlogPageComments postId={post.id} comments={post.comments} />
-                  <BlogPageForm postId={post.id} />
-                </div>
+                <>
+                  {post ? (
+                    <div className="blog__item">
+                      <BlogPageContent post={post} />
+                      <BlogPageLinks postId={post.id} posts={posts} />
+                      <BlogPageComments postId={post.id} comments={post.comments} />
+                      <BlogPageForm postId={post.id} />
+                    </div>
+                  ) : (
+                    <div className="blog__not-found">
+                      <h1 className="blog__not-found-title">Ошибка поиска</h1>
+                      <p className="blog__not-found-text">Не удалось найти пост</p>
+                    </div>
+                  )}
+                </>
               )}
             </div>
             <Aside />

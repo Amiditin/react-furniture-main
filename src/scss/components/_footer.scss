@@ -8,7 +8,7 @@
     justify-content: space-between;
   }
   &__info {
-    width: 540px;
+    width: 500px;
   }
   &__info-title {
     color: $title;
@@ -18,7 +18,7 @@
   }
   &__info-text {
     margin-bottom: 16px;
-    max-width: 476px;
+    text-align: justify;
   }
   &__info-email {
     font-weight: 600;
@@ -39,10 +39,12 @@
   &__form {
     display: flex;
   }
+  &__input {
+    width: 100%;
+  }
   &__social {
     width: 125px;
-    margin-right: auto;
-    margin-left: 100px;
+    margin: auto;
   }
   &__social-link {
     padding-left: 28px;
