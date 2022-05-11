@@ -1,12 +1,9 @@
-import React from 'react';
-
-import GalleryCell from '../../components/GalleryCell';
-
 import Slider from './sections/Slider';
 import WorksPath from './sections/WorksPath';
 import BlogBox from './sections/BlogBox/BlogBox';
 import Decor from './sections/Decor';
 import NewCollection from './sections/NewCollection';
+import Gallery from './sections/Gallery';
 
 function Home() {
   return (
@@ -14,8 +11,8 @@ function Home() {
       <Slider />
       <NewCollection />
       <Decor />
+      <Gallery />
       <WorksPath />
-      <GalleryCell />
       <BlogBox />
     </main>
   );

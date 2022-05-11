@@ -1,63 +1,60 @@
-import classNames from 'classnames';
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from './Button';
+import { useSelector } from 'react-redux';
 
-function GalleryCell({ cells = 1 }) {
-  const [activeTab, setActiveTab] = React.useState(0);
+function GalleryCell({ count = 1, filter = null, disableButton = () => {} }) {
+  const { loading, posts } = useSelector((state) => state.posts);
+  const [filtredPosts, setFiltredPosts] = useState([]);
+  const [images, setImages] = useState([]);
 
-  const ButtonChild = [
-    'Bedroom furniture',
-    'Living room furniture',
-    'Office furniture',
-    'Dining room futniture',
-    'Chair',
-  ];
+  useEffect(() => {
+    !loading && setFiltredPosts(posts.filter((post) => (filter ? post.style === filter : true)));
+  }, [filter, loading, posts]);
+
+  useEffect(() => {
+    let images = [];
+
+    filtredPosts
+      .map((post) => {
+        return post.images.map((img) => {
+          return { url: img, postName: post.name, postTitle: post.title };
+        });
+      })
+      .forEach((array, index) =>
+        array.forEach((item, i) => images.push({ id: index + i * filtredPosts.length, ...item })),
+      );
+
+    setImages(
+      images.sort((prev, next) => {
+        if (prev.id < next.id) return -1;
+        return 1;
+      }),
+    );
+  }, [filtredPosts]);
+
+  useEffect(() => {
+    count * 9 < images.length ? disableButton(false) : disableButton(true);
+  }, [count, disableButton, images.length]);
 
   return (
-    <div className="gallery">
-      <div className="container-fluid">
-        <div className="gallery__btns">
-          {ButtonChild &&
-            ButtonChild.map((child, index) => {
-              return (
-                <Button
-                  ClassName="tab"
-                  key={index}
-                  onClick={() => setActiveTab(index)}
-                  active={activeTab === index ? true : false}>
-                  {child}
-                </Button>
-              );
-            })}
-        </div>
-        {Array.from({ length: cells }, (_, index) => {
-          return (
-            <div className="gallery__inner" key={index}>
-              <div className="gallery__items">
-                <Link
-                  className={classNames('gallery__item', { gallery__big: index % 2 === 0 })}
-                  to="/">
-                  <img className="gallery__img" src="/img/gallery/1.jpg" alt="img" />
-                </Link>
-                <Link className="gallery__item" to="/">
-                  <img className="gallery__img" src="/img/gallery/2.jpg" alt="img" />
-                </Link>
-                <Link
-                  className={classNames('gallery__item', { gallery__big: index % 2 === 1 })}
-                  to="/">
-                  <img className="gallery__img" src="/img/gallery/1.jpg" alt="img" />
-                </Link>
-                <Link className="gallery__item" to="/">
-                  <img className="gallery__img" src="/img/gallery/4.jpg" alt="img" />
-                </Link>
-                <Link className="gallery__item" to="/">
-                  <img className="gallery__img" src="/img/gallery/5.jpg" alt="img" />
-                </Link>
-              </div>
-            </div>
-          );
-        })}
+    <div className="gallery__inner">
+      <div className="gallery__items">
+        {images.length &&
+          Array.from({ length: count }, (_, cell) => {
+            return images.slice(9 * cell, 9 * (cell + 1)).map((image, index) => (
+              <Link
+                className="gallery__item"
+                to={`/blog/${image.postName}`}
+                key={`${cell}.${index}`}>
+                <img
+                  className="gallery__img"
+                  src={image.url}
+                  alt={image.postName}
+                  title={image.postTitle}
+                />
+              </Link>
+            ));
+          })}
       </div>
     </div>
   );
