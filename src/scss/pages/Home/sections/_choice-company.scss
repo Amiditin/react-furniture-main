@@ -1,4 +1,4 @@
-.works-path {
+.choice-company {
   padding-bottom: 120px;
 
   &__title {
@@ -8,6 +8,14 @@
     margin-bottom: 40px;
     font-size: 36px;
     line-height: 51px;
+    position: relative;
+    padding-bottom: 25px;
+
+    &::after {
+      @extend %underline;
+      margin: auto;
+      width: 150px;
+    }
   }
 
   &__items-box {
@@ -33,11 +41,16 @@
     flex-wrap: wrap;
     align-items: center;
     position: relative;
-    width: 250px;
+    width: 260px;
     height: 100%;
   }
 
-  &__item--production {
+  &__item-img {
+    width: 30px;
+    height: 30px;
+  }
+
+  &__item--сost {
     margin-left: 317px;
 
     &::after {
@@ -51,12 +64,12 @@
     }
   }
 
-  &__item--consultation,
-  &__item--production {
+  &__item--reability,
+  &__item--сost {
     padding-bottom: 38px;
   }
 
-  &__item--measuring {
+  &__item--geography {
     padding-top: 38px;
     margin-left: 305px;
 

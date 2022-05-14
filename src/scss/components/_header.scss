@@ -8,9 +8,7 @@
 
   &__logo {
     margin: 0 20px;
-    width: 140px;
-    padding-bottom: 14px;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.25s ease-in-out;
 
     &:hover {
       transform: scale(1.03);
@@ -28,10 +26,12 @@
 
   &__list {
     display: flex;
+    align-items: center;
   }
 
   &__list-item {
     padding: 20px 55px 20px 40px;
+    white-space: nowrap;
 
     @extend %title-font;
     color: rgba(54, 56, 56, 0.9);
@@ -46,7 +46,7 @@
     margin-left: 110px;
   }
 
-  &__list-active > span {
+  &__list-item--active > span {
     border-bottom: 2px solid #363838;
     padding-bottom: 5px;
   }

@@ -10,25 +10,30 @@
     top: 0;
     z-index: -1;
   }
-  
+
   &__item {
     display: flex;
     justify-content: center;
-    align-items: center;
   }
-  
+
   &__img {
     margin-left: -12%;
-    max-width: 700px;
-    height: 815px;
-    object-fit: cover;
+    padding: 80px 55px 0 0;
+
+    img {
+      max-width: 580px;
+      height: 815px;
+      object-fit: cover;
+      border-radius: 22px;
+    }
   }
-  
+
   &__info {
     max-width: 645px;
     margin-left: 25px;
+    margin-top: 200px;
   }
-  
+
   &__title {
     color: $title;
     @extend %title-font;
@@ -37,13 +42,13 @@
     padding-bottom: 26px;
     margin-bottom: 26px;
     position: relative;
-  
+
     &::after {
       @extend %underline;
       width: 185px;
     }
   }
-  
+
   &__text {
     max-width: 585px;
   }

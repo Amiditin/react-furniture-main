@@ -1,0 +1,30 @@
+.notfound {
+  margin: 200px 0;
+  text-align: center;
+
+  &__title {
+    color: $title;
+    @extend %title-font;
+    font-size: 100px;
+    line-height: 55px;
+    padding-bottom: 40px;
+    margin-bottom: 25px;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 200px;
+      height: 4px;
+      margin: 0 auto;
+      background: #6d7278;
+    }
+  }
+  &__text {
+    font-size: 20px;
+    line-height: 41px;
+  }
+}

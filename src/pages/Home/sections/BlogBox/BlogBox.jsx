@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import BlogBoxItem from './BlogBoxItem';
 import BlogBoxLoading from './BlogBoxLoading';
 
@@ -8,7 +9,9 @@ function BlogBox() {
   return (
     <section className="blog-box">
       <div className="container">
-        <h3 className="blog-box__title">Больше вдохновляющих идей в нашем блоге</h3>
+        <Link to="/blog">
+          <h3 className="blog-box__title">Больше вдохновляющих идей в нашем блоге</h3>
+        </Link>
         <div className="blog-box__items">
           {loading ? (
             <>

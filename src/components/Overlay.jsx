@@ -47,10 +47,10 @@ function Overlay() {
           </div>
         ) : (
           <div className="rightside-menu__content">
-            <h4 className="rightside-menu__title">Furniture for life</h4>
+            <h4 className="rightside-menu__title">LEVINA KITCHEN</h4>
             <p className="rightside-menu__text">
-              Sustainable hot chicken skateboard, dreamcatcher meggings actually squid. Slow-carb
-              everyday carry +1 art party microdosing, put a bird on it brooklyn
+              Чтобы иметь возможность создавать и комментировать посты необходимо авторизоваться с
+              помощье Google
             </p>
             <div className="rightside-menu__btn">
               <Button ClassName="black" onClick={() => dispatch(signInWithGoogle())}>

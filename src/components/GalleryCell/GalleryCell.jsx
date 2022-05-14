@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import GalleryCellLoading from './GalleryCellLoading';
 
 function GalleryCell({ count = 1, filter = null, disableButton = () => {} }) {
   const { loading, posts } = useSelector((state) => state.posts);
@@ -34,12 +35,15 @@ function GalleryCell({ count = 1, filter = null, disableButton = () => {} }) {
 
   useEffect(() => {
     count * 9 < images.length ? disableButton(false) : disableButton(true);
-  }, [count, disableButton, images.length]);
+  }, [count, disableButton, images]);
 
   return (
     <div className="gallery__inner">
       <div className="gallery__items">
-        {images.length &&
+        {loading ? (
+          <GalleryCellLoading />
+        ) : (
+          images.length &&
           Array.from({ length: count }, (_, cell) => {
             return images.slice(9 * cell, 9 * (cell + 1)).map((image, index) => (
               <Link
@@ -54,7 +58,8 @@ function GalleryCell({ count = 1, filter = null, disableButton = () => {} }) {
                 />
               </Link>
             ));
-          })}
+          })
+        )}
       </div>
     </div>
   );

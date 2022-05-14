@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { listСategories } from '../../utils/constants';
 
-import GalleryCell from '../../components/GalleryCell';
+import GalleryCell from '../../components/GalleryCell/GalleryCell';
 import Button from '../../components/Button';
 
 function Gallery() {

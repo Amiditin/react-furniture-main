@@ -1,17 +1,17 @@
 import React from 'react';
 
-import Collection from '../../components/Collection';
+import Collection from '../../components/Collection/Collection';
 import Technologies from '../../components/Technologies';
 
 import AboutUs from './sections/AboutUs';
-import Inspiration from './sections/Inspiration';
+import Performance from './sections/Performance';
 
 function About() {
   return (
     <main className="main">
       <AboutUs />
       <Collection />
-      <Inspiration />
+      <Performance />
       <Technologies />
     </main>
   );

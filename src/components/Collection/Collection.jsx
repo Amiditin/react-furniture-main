@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CollectionLoading from './CollectionLoading';
 
 function Collection() {
   const { loading, posts } = useSelector((state) => state.posts);
@@ -7,7 +8,7 @@ function Collection() {
     <div className="container-fluid">
       <div className="collection">
         {loading ? (
-          <span>Loading</span>
+          <CollectionLoading />
         ) : (
           <>
             {posts.slice(0, 5).map((post) => (

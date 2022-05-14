@@ -1,14 +1,23 @@
 .blog-box {
-  padding-bottom: 100px;
+  margin-bottom: 100px;
+  height: 650px;
 
   &__title {
     color: $title;
     @extend %title-font;
     font-size: 36px;
     line-height: 51px;
-    margin: 0 auto 30px;
+    padding-bottom: 25px;
+    margin: 0 auto 50px;
     max-width: 500px;
     text-align: center;
+    position: relative;
+
+    &::after {
+      @extend %underline;
+      margin: auto;
+      width: 250px;
+    }
   }
 
   &__items {

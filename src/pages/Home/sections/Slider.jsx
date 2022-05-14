@@ -1,14 +1,10 @@
-import React from 'react';
-import classNames from 'classnames';
-
-import Slide from './Slide';
+import { useEffect, useState } from 'react';
+import { slides } from '../../../utils/constants';
 
 function Slider() {
-  const [activeSlide, setActiveSlide] = React.useState(1);
+  const [activeSlide, setActiveSlide] = useState(1);
 
-  const slideTitle = ['slide 1', 'slide 2', 'slide 3'];
-
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
       activeSlide === 2 ? setActiveSlide(0) : setActiveSlide(activeSlide + 1);
     }, 10000);
@@ -18,24 +14,30 @@ function Slider() {
   return (
     <section className="top">
       <div className="top__inner">
-        {slideTitle &&
-          slideTitle.map((title, index) => (
-            <Slide key={index} current={activeSlide === index ? true : false} title={title} />
-          ))}
         <div className="top__slider">
+          {slides.map((slide, index) => (
+            <div className={`slide ${activeSlide !== index && 'slide-invisible'}`} key={index}>
+              <img className="slide__background" src={slide.bgUrl} alt="background" />
+              <div className="slide__item">
+                <div className="slide__img">
+                  <img src={slide.imgUrl} alt="img" />
+                </div>
+                <div className="slide__info">
+                  <h2 className="slide__title">{slide.title}</h2>
+                  <p className="slide__text">{slide.text}</p>
+                </div>
+              </div>
+            </div>
+          ))}
           <ul className="top__slider-dots">
-            {Array.from({ length: 3 }, (_, index) => {
-              return (
-                <li className="top__slider-dot" key={index}>
-                  <button
-                    className={classNames('top__slider-btn', {
-                      'top__slider-active': index === activeSlide,
-                    })}
-                    onClick={() => setActiveSlide(index)}
-                  />
-                </li>
-              );
-            })}
+            {Array.from({ length: 3 }, (_, index) => (
+              <li className="top__slider-dot" key={index}>
+                <button
+                  className={`top__slider-btn ${activeSlide === index && 'top__slider-active'}`}
+                  onClick={() => setActiveSlide(index)}
+                />
+              </li>
+            ))}
           </ul>
         </div>
       </div>

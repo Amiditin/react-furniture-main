@@ -23,7 +23,7 @@ function Header() {
                 ) : (
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? 'menu__list-item menu__list-active' : 'menu__list-item'
+                      `menu__list-item ${isActive && 'menu__list-item--active'}`
                     }
                     key={item.id}
                     to={item.path}>

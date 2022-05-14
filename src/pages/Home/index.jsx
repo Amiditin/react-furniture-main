@@ -1,5 +1,5 @@
 import Slider from './sections/Slider';
-import WorksPath from './sections/WorksPath';
+import ChoiceCompany from './sections/ChoiceCompany';
 import BlogBox from './sections/BlogBox/BlogBox';
 import Decor from './sections/Decor';
 import NewCollection from './sections/NewCollection';
@@ -12,7 +12,7 @@ function Home() {
       <NewCollection />
       <Decor />
       <Gallery />
-      <WorksPath />
+      <ChoiceCompany />
       <BlogBox />
     </main>
   );

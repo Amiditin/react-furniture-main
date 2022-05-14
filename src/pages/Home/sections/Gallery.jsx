@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import GalleryCell from '../../../components/GalleryCell';
+import GalleryCell from '../../../components/GalleryCell/GalleryCell';
 
 function Gallery() {
   return (
