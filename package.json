@@ -46,5 +46,14 @@
   "devDependencies": {
     "prettier": "2.6.2",
     "sass": "^1.45.2"
-  }
+  },
+  "description": "Блог на тематику интерьеров для кухонь.",
+  "main": "index.js",
+  "repository": "git+https://github.com/Amiditin/react-furniture-main.git",
+  "author": "Dmitry Fomin <dimafomin02@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Amiditin/react-furniture-main/issues"
+  },
+  "homepage": "https://github.com/Amiditin/react-furniture-main#readme"
 }
