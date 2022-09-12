@@ -6,7 +6,7 @@ function Gallery() {
   return (
     <div className="gallery">
       <Link to="/gallery">
-        <h3 className="gallery__title">Завораживающая галлерея</h3>
+        <h3 className="gallery__title">Завораживающая галерея</h3>
       </Link>
       <div className="container-fluid">
         <GalleryCell />
