@@ -100,7 +100,7 @@ const postsSlice = createSlice({
       state.filteredPosts = state.posts = payload;
     },
     [fetchPosts.rejected]: (state) => {
-      state.loading = false;
+      state.loading = true;
       state.error = true;
     },
     [addCreatePost.pending]: (state) => {
