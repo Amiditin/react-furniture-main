@@ -15,3 +15,6 @@
 - **[Firebase](https://firebase.google.com)** (бэкенд)
 - **[Prettier](https://prettier.io)** (форматирование кода)
 - **[SCSS](https://sass-lang.com)** (стилизация)
+
+
+⚙️ Этот же проект, только на новом стеке: https://github.com/Amiditin/react-levina/tree/master/frontend
